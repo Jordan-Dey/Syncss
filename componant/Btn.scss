@@ -1,0 +1,127 @@
+// ---------------------------------
+//              Btn
+// ---------------------------------
+
+@use "../config/mq";
+@use "../config/colors";
+@use "../config/borders";
+
+@use "../helper/text";
+@use "../helper/spaces";
+
+.Btn {
+  @extend .text-regular;
+  @extend .text-title;
+  @extend .px-5;
+  @extend .py-2;
+  @include borders.getStyles($color: colors.$transparent);
+
+  display: inline-block;
+  vertical-align: baseline;
+  width: auto;
+  background: colors.$transparent;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+
+  // ---------------------------------
+  // Size
+  // ---------------------------------
+
+  &.Btn--full {
+    width: 100%;
+  }
+
+  &.Btn--large {
+    @extend .text-large;
+    @extend .px-6;
+    @extend .py-3;
+  }
+
+  &.Btn--small {
+    @extend .text-small;
+    @extend .px-4;
+    @extend .py-2;
+  }
+
+  // ---------------------------------
+  // Colors
+  // ---------------------------------
+
+  @mixin btn-primary-display {
+    border-color: colors.$primary;
+    background: colors.$primary;
+    color: colors.$black;
+  }
+
+  @mixin btn-filled-display {
+    border-color: colors.$black;
+    background: colors.$black;
+    color: colors.$white;
+  }
+
+  @mixin btn-outlined-display {
+    border-color: colors.$black;
+    background: colors.$transparent;
+    color: colors.$black;
+  }
+
+  &.Btn--primary {
+    @include btn-primary-display;
+
+    &:hover {
+      @include btn-filled-display;
+    }
+
+    &:active {
+      @include btn-outlined-display;
+    }
+  }
+
+  &.Btn--filled {
+    @include btn-filled-display;
+
+    &:hover {
+      @include btn-outlined-display;
+    }
+
+    &:active {
+      @include btn-primary-display;
+    }
+  }
+
+  &.Btn--outlined {
+    @include btn-outlined-display;
+
+    &:hover {
+      @include btn-filled-display;
+    }
+
+    &:active {
+      @include btn-primary-display;
+    }
+  }
+
+  // ---------------------------------
+  // States
+  // ---------------------------------
+
+  &.Btn--primary[disabled],
+  &.Btn--filled[disabled] {
+    border-color: colors.$grey-light;
+    background: colors.$grey-light;
+    color: colors.$white;
+  }
+
+  &.Btn--outlined[disabled] {
+    border-color: colors.$grey-light;
+    background: colors.$transparent;
+    color: colors.$grey-light;
+  }
+
+  &.Btn--hidden {
+    transition: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

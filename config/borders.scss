@@ -1,0 +1,26 @@
+@use "sass:map";
+
+@use "./colors.scss";
+
+$defaultType: solid;
+
+$smallSize: 1px;
+$defaultSize: 1.5px;
+$largeSize: 2px;
+
+$smallRadius: 0;
+$defaultRadius: 0;
+$largeRadius: 0;
+
+$defaultStyle: $defaultSize $defaultType;
+$defaultColor: colors.$grey;
+
+@mixin getStyles($size: null, $type: null, $color: null, $radius: null) {
+  $computedSize: $size or $defaultSize;
+  $computedType: $type or $defaultType;
+  $computedColor: $color or $defaultColor;
+  $computedRadius: $radius or $defaultRadius;
+
+  border: $computedSize $computedType $computedColor;
+  border-radius: $defaultRadius;
+}

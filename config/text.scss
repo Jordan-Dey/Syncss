@@ -1,0 +1,101 @@
+// ------------------------
+//         Text
+// ------------------------
+
+@use "sass:map";
+@use "./colors.scss";
+
+// body text
+
+// Map root font-size to 10px, so that 1rem = 10px
+$fontBase: 0.625em;
+
+// TODO JORDAN : remove direct usage of "$textSize"
+$textSize: 1.6rem;
+$textHeight: 1.5;
+$textColor: colors.$black;
+
+$textConfig: (
+  "large": (
+    "font-size": $textSize * 1.5,
+    "line-height": $textHeight * 0.8,
+    "desktop": (
+      "font-size": $textSize * 2,
+    ),
+  ),
+  "regular": (
+    "font-size": $textSize,
+    "line-height": $textHeight,
+    "desktop": (
+      "font-size": $textSize * 1.2,
+    ),
+  ),
+  "small": (
+    "font-size": $textSize * 0.8,
+    "line-height": $textHeight * 1.2,
+    "desktop": (
+      "font-size": $textSize,
+    ),
+  ),
+);
+
+@function getTextConfig($key) {
+  @return map.get($textConfig, $key);
+}
+
+// headings
+
+$headingBaseSize: 1.2rem;
+
+$headingConfig: (
+  (
+    // level 1
+    "line-height": 1,
+    "font-size": $headingBaseSize * 3,
+    "tablet": (
+      "font-size": $headingBaseSize * 4,
+    )
+  ),
+  (
+    // level 2
+    "line-height": 1,
+    "font-size": $headingBaseSize * 2,
+    "tablet": (
+      "font-size": $headingBaseSize * 2.5,
+    ),
+    "desktop": (
+      "font-size": $headingBaseSize * 3,
+    )
+  ),
+  (
+    // level 3
+    "line-height": 1,
+    "font-size": $headingBaseSize * 2,
+    "tablet": (
+      "font-size": $headingBaseSize * 2.5,
+    )
+  ),
+  (
+    // level 4
+    "line-height": 1.1,
+    "font-size": $headingBaseSize * 1.6,
+    "tablet": (
+      "font-size": $headingBaseSize * 1.8,
+    ),
+    "desktop": (
+      "font-size": $headingBaseSize * 2,
+    )
+  ),
+  (
+    // level 5
+    "line-height": 1.1,
+    "font-size": $headingBaseSize * 1.6,
+    "tablet": (
+      "font-size": $headingBaseSize * 1.8,
+    )
+  )
+);
+
+@function getHeadingConfig($level) {
+  @return nth($headingConfig, $level);
+}

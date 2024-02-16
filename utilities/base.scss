@@ -1,0 +1,151 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+@use "../config/colors.scss";
+@use "../config/fonts.scss";
+@use "../config/text.scss";
+
+@use "../helper/accessibility.scss";
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  outline: none;
+  outline-color: colors.$transparent;
+  outline-width: 0;
+}
+
+button:focus-visible,
+a:focus-visible,
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+*[tabindex]:focus-visible {
+  @extend .accessibility-focusVisible;
+}
+
+/**
+ * This CSS code block targets users who prefer reduced motion due
+ * to accessibility concerns or personal preference. It modifies the
+ * style of elements to minimize motion, using the following properties:
+ * 
+ * 1) transition-duration and animation-duration: Set to 0.001ms (virtually
+ * instant) to effectively disable animations/transitions. Using 0.001ms
+ * instead of 0 avoids browser bugs that may cause a jarring user experience,
+ * where all animations are abruptly removed, rather than smoothly disabled.
+ *
+ * 2) background-attachment: Set to 'initial' to prevent fixed or scrolling
+ * background images, reducing motion.
+ *
+ * 3) scroll-behavior: Set to 'auto' to disable smooth scrolling effects.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Additionnal reset styles for very common stuff
+// Normalize tries to only remove differences between browsers.
+// If we want an actual reset, we need to reset the styles of
+// just a handful of elements.
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: inherit;
+}
+
+p,
+ul,
+nav,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+nav,
+ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+a {
+  color: inherit;
+
+  &:not(.text-underline) {
+    text-decoration: none;
+  }
+}
+
+// Reset button styles.
+// It takes a bit of work to achieve a neutral look.
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  // show a hand cursor on hover
+  cursor: pointer;
+}
+
+details > summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+// Here we contradict Normalize
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+// Force images and frames to fit their container at most
+img,
+iframe {
+  max-width: 100%;
+}
+
+// Other small fixes
+::-ms-clear {
+  display: none;
+}
+
+// Document
+html {
+  font-size: text.$fontBase; /* fallback IE8+ */
+  // IE9-IE11 math fixing. See https://raphaelgoetter.wordpress.com/2016/07/05/lastuce-du-font-size-62-5-oui-non-ou-ca-depend/
+  font-size: calc(1 * text.$fontBase);
+}
+
+body {
+  margin: 0;
+  font-family: fonts.$base;
+  line-height: text.$textHeight;
+  color: text.$textColor;
+  scroll-behavior: smooth;
+}

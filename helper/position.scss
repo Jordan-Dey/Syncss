@@ -1,0 +1,93 @@
+// ---------------------------------
+//             Posititon
+// ---------------------------------
+
+.position-none {
+  display: none;
+}
+
+.position-block {
+  display: block;
+}
+
+.position-inlineBlock {
+  display: inline-block;
+}
+
+.position-vMiddle {
+  vertical-align: middle;
+}
+
+.position-relative {
+  position: relative;
+}
+
+// size
+
+.position-full {
+  width: 100%;
+}
+
+.position-16on9 {
+  aspect-ratio: 16/9;
+}
+
+// flex container
+
+.position-flex {
+  display: flex;
+}
+
+.position-flexSpaceAround {
+  justify-content: space-around;
+}
+
+.position-flexSpaceEvenly {
+  justify-content: space-evenly;
+}
+
+.position-flexSpaceBetween {
+  justify-content: space-between;
+}
+
+.position-flexCenter {
+  justify-content: center;
+}
+
+.position-flexRight {
+  justify-content: right;
+}
+
+.position-flexColumnReverse {
+  flex-direction: column-reverse;
+}
+
+.position-flexColumn {
+  flex-direction: column;
+}
+
+.position-flexWrap {
+  flex-wrap: wrap;
+}
+
+.position-flexVTop {
+  align-items: flex-start;
+}
+
+.position-flexVBottom {
+  align-items: flex-end;
+}
+
+.position-flexVCenter {
+  align-items: center;
+}
+
+// flex item
+
+.position-flexItemMaximized {
+  flex: 1 1 100%;
+}
+
+.position-flexItemVCenter {
+  align-self: center;
+}

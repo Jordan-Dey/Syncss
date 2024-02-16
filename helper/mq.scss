@@ -1,0 +1,52 @@
+/**
+  * Media queries helper
+  */
+
+@use "../config/mq.scss";
+
+@include mq.media(">=tablet") {
+  .mq--onlyPhone {
+    display: none !important;
+  }
+}
+
+@include mq.media("<desktop") {
+  .mq--onlyDesktop {
+    display: none !important;
+  }
+}
+
+@include mq.media("<tablet") {
+  .mq--onlyTablet {
+    display: none !important;
+  }
+}
+@include mq.media(">=desktop") {
+  .mq--onlyTablet {
+    display: none !important;
+  }
+}
+
+@include mq.media("<tablet") {
+  .mq--noPhone {
+    display: none !important;
+  }
+}
+
+@include mq.media(">=tablet", "<desktop") {
+  .mq--noTablet {
+    display: none !important;
+  }
+}
+
+@include mq.media(">=desktop") {
+  .mq--noDesktop {
+    display: none !important;
+  }
+}
+
+@media print {
+  .mq--noPrint {
+    display: none !important;
+  }
+}

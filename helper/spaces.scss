@@ -1,0 +1,93 @@
+// ------------------------
+//         Spaces
+// ------------------------
+
+@use "sass:map";
+
+@use "../config/mq.scss";
+@use "../config/spaces.scss";
+
+@mixin setProperties($properties, $value) {
+  @each $property in $properties {
+    #{$property}: $value;
+  }
+}
+
+@mixin responsiveSpacing($properties, $mqValues) {
+  @if type-of($mqValues) == "map" {
+    @each $mqKey, $spaceValue in $mqValues {
+      @if $mqKey == "mobile" {
+        @include setProperties($properties, $spaceValue);
+      } @else {
+        @include mq.media(map.get(mq.$nameMap, $mqKey)...) {
+          @include setProperties($properties, $spaceValue);
+        }
+      }
+    }
+  } @else {
+    @include setProperties($properties, $mqValues);
+  }
+}
+
+@for $i from 1 through length(spaces.$config) {
+  $spaceIdentifier: $i - 1;
+  $configValue: nth(spaces.$config, $i);
+
+  // Margin
+  .m-#{$spaceIdentifier} {
+    @include responsiveSpacing("margin", $configValue);
+  }
+
+  .mt-#{$spaceIdentifier} {
+    @include responsiveSpacing("margin-top", $configValue);
+  }
+
+  .mb-#{$spaceIdentifier} {
+    @include responsiveSpacing("margin-bottom", $configValue);
+  }
+
+  .ml-#{$spaceIdentifier} {
+    @include responsiveSpacing("margin-left", $configValue);
+  }
+
+  .mr-#{$spaceIdentifier} {
+    @include responsiveSpacing("margin-right", $configValue);
+  }
+
+  .mx-#{$spaceIdentifier} {
+    @include responsiveSpacing(("margin-left", "margin-right"), $configValue);
+  }
+
+  .my-#{$spaceIdentifier} {
+    @include responsiveSpacing(("margin-top", "margin-bottom"), $configValue);
+  }
+
+  // Padding
+  .p-#{$spaceIdentifier} {
+    @include responsiveSpacing("padding", $configValue);
+  }
+
+  .pt-#{$spaceIdentifier} {
+    @include responsiveSpacing("padding-top", $configValue);
+  }
+
+  .pb-#{$spaceIdentifier} {
+    @include responsiveSpacing("padding-bottom", $configValue);
+  }
+
+  .pl-#{$spaceIdentifier} {
+    @include responsiveSpacing("padding-left", $configValue);
+  }
+
+  .pr-#{$spaceIdentifier} {
+    @include responsiveSpacing("padding-right", $configValue);
+  }
+
+  .px-#{$spaceIdentifier} {
+    @include responsiveSpacing(("padding-left", "padding-right"), $configValue);
+  }
+
+  .py-#{$spaceIdentifier} {
+    @include responsiveSpacing(("padding-top", "padding-bottom"), $configValue);
+  }
+}

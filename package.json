@@ -1,0 +1,31 @@
+{
+  "name": "sass-starter",
+  "version": "0.1.0",
+  "description": "A easy SASS starter to build design system quickly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jordan-Dey/sass-starter.git"
+  },
+  "keywords": [
+    "SASS",
+    "SCSS",
+    "starter",
+    "framework"
+  ],
+  "author": "Jordan Dey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jordan-Dey/sass-starter/issues"
+  },
+  "homepage": "https://github.com/Jordan-Dey/sass-starter#readme",
+  "dependencies": {
+    "include-media": "^2.0.0",
+    "node-sass": "^9.0.0",
+    "sass": "^1.71.0",
+    "sass-loader": "^14.1.0"
+  }
+}

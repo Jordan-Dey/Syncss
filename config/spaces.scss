@@ -1,0 +1,46 @@
+@use "sass:list";
+
+$spaceValue: 5px;
+$regulatedMultiplicators: 0, 1, 2, 3, 4, 6, 10, 20, 40;
+
+$regulatedSpacing: ();
+@each $multiplicator in $regulatedMultiplicators {
+  $finalValue: $spaceValue * $multiplicator;
+  $regulatedSpacing: list.append($regulatedSpacing, $finalValue);
+}
+
+$config: (
+  nth($regulatedSpacing, 1),
+  nth($regulatedSpacing, 2),
+  nth($regulatedSpacing, 3),
+  (
+    "mobile": nth($regulatedSpacing, 3),
+    "tablet": nth($regulatedSpacing, 4),
+  ),
+  (
+    "mobile": nth($regulatedSpacing, 4),
+    "tablet": nth($regulatedSpacing, 5),
+  ),
+  (
+    "mobile": nth($regulatedSpacing, 5),
+    "tablet": nth($regulatedSpacing, 6),
+  ),
+  (
+    "mobile": nth($regulatedSpacing, 6),
+    "tablet": nth($regulatedSpacing, 7),
+  ),
+  (
+    "mobile": nth($regulatedSpacing, 6),
+    "tablet": nth($regulatedSpacing, 7),
+    "desktop": nth($regulatedSpacing, 8),
+  ),
+  (
+    "mobile": nth($regulatedSpacing, 7),
+    "tablet": nth($regulatedSpacing, 8),
+    "desktop": nth($regulatedSpacing, 9),
+  )
+);
+
+@function get($key) {
+  @return nth($regulatedSpacing, $key + 1);
+}

@@ -1,0 +1,200 @@
+// ------------------------
+//         Text
+// ------------------------
+
+@use "sass:map";
+
+@use "../config/mq.scss";
+@use "../config/colors.scss";
+@use "../config/fonts.scss";
+@use "../config/text.scss";
+
+@use "../helper/spaces.scss";
+
+// ------------------------
+// Typography
+// ------------------------
+
+// Heading
+
+.text-heading {
+  display: block;
+  font-family: fonts.$title;
+  font-weight: 700;
+}
+
+@mixin setProperties($properties) {
+  @each $property, $value in $properties {
+    #{$property}: $value;
+  }
+}
+
+@mixin computStyle($styleConfig) {
+  @each $mqKey, $properties in $styleConfig {
+    @if index(mq.$nameAvailable, $mqKey) == null {
+      // in this case $mqKey is a top level property
+      $property: (
+        $mqKey: $properties,
+      );
+      @include setProperties($property);
+    } @else {
+      @if $mqKey == "mobile" {
+        @include setProperties($properties);
+      } @else {
+        @include mq.media(map.get(mq.$nameMap, $mqKey)...) {
+          @include setProperties($properties);
+        }
+      }
+    }
+  }
+}
+
+@mixin headingStyles($level) {
+  $levelConfig: text.getHeadingConfig($level);
+  @include computStyle($levelConfig);
+}
+
+h1,
+.text-heading1 {
+  @extend .text-heading;
+  @extend .my-5;
+  @include headingStyles(1);
+}
+
+h2,
+.text-heading2 {
+  @extend .text-heading;
+  @extend .my-4;
+  @include headingStyles(2);
+}
+
+h3,
+.text-heading3 {
+  @extend .text-heading;
+  @extend .my-3;
+  @include headingStyles(3);
+}
+
+h4,
+.text-heading4 {
+  @extend .text-heading;
+  @extend .my-3;
+  @include headingStyles(4);
+}
+
+h5,
+h6,
+.text-heading5,
+.text-heading6 {
+  @extend .text-heading;
+  @extend .my-2;
+  @include headingStyles(5);
+}
+
+// Body
+
+@mixin bodyStyles($key) {
+  $textConfig: text.getTextConfig($key);
+  @include computStyle($textConfig);
+}
+
+small,
+.text-small {
+  @include bodyStyles("small");
+}
+
+body,
+.text-regular {
+  @include bodyStyles("regular");
+}
+
+.text-large {
+  @include bodyStyles("large");
+}
+
+// ------------------------
+// Tools
+// ------------------------
+
+// family
+
+.text-title {
+  font-family: fonts.$title;
+}
+
+.text-body {
+  font-family: fonts.$base;
+}
+
+// positions
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-noWrap {
+  white-space: nowrap;
+}
+
+.text-wrap {
+  white-space: break-spaces;
+}
+
+// decoration
+
+strong,
+em,
+.text-bold {
+  font-weight: 700;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+u,
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+// color
+
+.text-black {
+  color: colors.$black;
+}
+
+.text-darkGrey {
+  color: colors.$grey-dark;
+}
+
+.text-lightGrey {
+  color: colors.$grey-light;
+}
+
+.text-white {
+  color: colors.$white;
+}
+
+.text-primary {
+  color: colors.$primary;
+}
+
+.text-secondary {
+  color: colors.$secondary;
+}

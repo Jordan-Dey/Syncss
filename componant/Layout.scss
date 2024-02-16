@@ -1,0 +1,52 @@
+// ---------------------------------
+//             Layout
+// ---------------------------------
+@use "../config/layout.scss";
+@use "../config/mq.scss";
+
+.Layout {
+  // Config
+  --central-column-range: #{layout.$layoutWidth};
+  --layout-margin: #{layout.$margin};
+
+  @include mq.media(">=desktop") {
+    --layout-margin: #{layout.$desktopMargin};
+  }
+
+  // Style
+  display: grid;
+  grid-template-columns:
+    minmax(var(--layout-margin), 1fr)
+    minmax(auto, var(--central-column-range))
+    minmax(var(--layout-margin), 1fr);
+  padding-block: #{layout.$padding};
+
+  @include mq.media(">=desktop") {
+    padding-block: #{layout.$desktopPadding};
+  }
+
+  // Modifiers
+  &--fullHeight {
+    padding-block: 0;
+  }
+
+  &--slimLayout {
+    --central-column-range: #{layout.$slimLayoutWidth};
+  }
+
+  &--smallLayout {
+    --central-column-range: #{layout.$smallLayoutWidth};
+  }
+
+  // Children style
+  > * {
+    grid-column: 2 / -2;
+  }
+}
+
+.Layout-item {
+  &--fullWidth {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
