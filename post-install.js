@@ -22,9 +22,9 @@ function copyFiles(source, destination) {
     if (!fs.existsSync(destinationFilePath)) {
       // Copy file
       fs.copySync(sourceFilePath, destinationFilePath);
-      console.log(`\x1b[32m ${sourceFilePath} created !`);
+      console.log(`\x1b[32m ${sourceFilePath} created ! \x1b[0m`);
     } else {
-      console.log(`\x1b[33m ${destinationFilePath} already exists... Skiped.`);
+      console.log(`\x1b[33m ${destinationFilePath} already exists... Skiped. \x1b[0m`);
     }
   });
 }
@@ -32,3 +32,4 @@ function copyFiles(source, destination) {
 sourceFolders.forEach(folder => {
   copyFiles(`${sourcePath}${folder}`, `${destinationPath}${folder}`);
 });
+fs.copySync(`${sourcePath}_index.scss`, `${destinationPath}_index.scss`);
