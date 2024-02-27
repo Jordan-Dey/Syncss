@@ -11,7 +11,7 @@ The principle of Syncss is to isolate all the rules governing your design system
 ## Installation
 
 ```
-npm install syncss
+npm install syncss --save-dev
 ```
 
 ## Concepts
