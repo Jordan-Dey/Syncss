@@ -4,7 +4,9 @@ A lightweight SASS starter for swiftly crafting design systems, tailored to refl
 
 The principle of Syncss is to isolate all the rules governing your design system into a readily accessible configuration. All the framework's code is available directly within your codebase, allowing you to easily edit it according to your needs.
 
-`config/borders.scss` contains the `$defaultRadius` variable. If you change this value, they will impact a lot of visual element (like form input or buttons). This the same thing with `$defaultSize` for border size or with `$primary` variable in `config/colors.scss`.
+`config/borders.scss` contains the `$defaultRadius` variable. If you change this value, it will impact many visual elements (such as form inputs or buttons). The same applies to the `$defaultSize` variable for border size or the `$primary` variable in `config/colors.scss`.
+
+![image](https://github.com/Jordan-Dey/Syncss/assets/143161975/47a26c7c-9ffd-45fe-9293-9820fb3bd254)
 
 ## Installation
 
@@ -14,14 +16,19 @@ npm install syncss
 
 ## Concepts
 
+Syncss is based on a simple concept, split into three parts:
+- Simple **configuration**: where we can easily change the rules of your design system.
+- Accessible **helpers**: to use your configuration everywhere.
+- Synchronized **components**: to create more complex elements, based on helpers and/or configuration.
 
+![image](https://github.com/Jordan-Dey/Syncss/assets/143161975/990f7792-70f2-47be-a17a-c2e519a67c60)
 
 ## Configuration
 
 Initially, I encourage you to browse the files contained in the 'config' folder and input your spacing values, color palette, typographies, and so on.
 
-### Exemple:
-With ths default `config/spaces.scss` configuration `$spaceValue` is equal to `5px` and `$regulatedMultiplicators` set the multiples of this value available in your design system. With this configuration we have this table of available spaces:
+### Example:
+With the default `config/spaces.scss` configuration, `$spaceValue` is equal to `5px` and `$regulatedMultiplicators` sets the multiples of this value available in your design system. With this configuration, we have this table of available spaces:
 
 | Key | Multiples | Value |
 | :-: |:-:| :-:|
@@ -35,7 +42,7 @@ With ths default `config/spaces.scss` configuration `$spaceValue` is equal to `5
 | 7 | 20 | 100px |
 | 8 | 40 | 200px |
 
-If you put `$spaceValue: 0.2em;` and `$regulatedMultiplicators: 0, 1, 2, 3, 4, 5, 7, 10, 15, 20;` in your config this table will automatically updated to (note: add multiplicators will create a new key):
+If you put `$spaceValue: 0.2em;` and `$regulatedMultiplicators: 0, 1, 2, 3, 4, 5, 7, 10, 15, 20;` in your config, this table will automatically update to (note: adding multiplicators will create a new key):
 | Key | Multiples | Value |
 | :-: |:-:| :-:|
 | 0 | 0 | 0em |
@@ -53,8 +60,12 @@ If you put `$spaceValue: 0.2em;` and `$regulatedMultiplicators: 0, 1, 2, 3, 4, 5
 
 When your rules match your design system, helpers will produce for you design token usable every where in your project.
 
-### Exemple:
-With the available spacing configuration explained above, we can build more complex rules like the object in `$config` variable of `config/spaces.scss`. This will produce design token like `m-[key]` (`m-0`, `p-2`, `mt-6`, `px-8`, ...) and this with responsiveness if need.
+## Helper
+
+When your rules match your design system, helpers will produce design tokens usable everywhere in your project.
+
+### Example:
+With the available spacing configuration explained above, we can build more complex rules like the object in the `$config` variable of `config/spaces.scss`. This will produce design tokens like `m-[key]` (`m-0`, `p-2`, `mt-6`, `px-8`, ...) and this with responsiveness if needed.
 
 ```
 // config/spaces.scss
@@ -92,19 +103,21 @@ $config: (
 );
 ```
 
-So with this configuration `m-1` will create a 5px margin and `pt-8` a responsive padding-top (50px on mobile, 100px on tablet and 200px on desktop).
+So with this configuration, m-1 will create a 5px margin, and pt-8 will create a responsive padding-top (50px on mobile, 100px on tablet, and 200px on desktop).
 
-## Componant
+## Component
 
-This folder contain basic structure for more complexe visual elements. Componants can use design token created before, and read some values from configuration. They can be used on multiple html tag (they not impact semantic) and can make in place style for children elements.
+This folder contains basic structures for more complex visual elements. Components can use design tokens created before and read some values from the configuration. They can be used on multiple HTML tags (they do not impact semantics) and can apply in-place styles for children elements.
 
-Like in design system, your components can have visual variation.
+Like in a design system, your components can have visual variations.
 
-Note: This is style componant and they not related to JS componants like vue.js or react.
+Note: These are style components and they are not related to JS components like Vue.js or React.
 
-### Exemple:
+### Example:
 
-`component/Btn.scss` will be build using a lot of helper like text or spacing, but also will some configuration values like border style, size or radius. In fact you can show all varient and stat of this element like in a storybook.
+`component/Btn.scss` will be built using a lot of helpers like text or spacing, but also with some configuration values like border style, size, or radius. In fact, you can showcase all variants and states of this element as in a Storybook.
+
+![image](https://github.com/Jordan-Dey/Syncss/assets/143161975/2c53c24a-ec8e-4925-af51-f6f82b67867e)
 
 ## Contact
 
@@ -115,3 +128,5 @@ Jordan Dey
 https://bit.ly/m/JordanDey
 
 ### Issues
+
+https://github.com/Jordan-Dey/Syncss/issues
