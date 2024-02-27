@@ -96,12 +96,22 @@ So with this configuration `m-1` will create a 5px margin and `pt-8` a responsiv
 
 ## Componant
 
-This folder contain basic structure for more complexe visual element.
+This folder contain basic structure for more complexe visual elements. Componants can use design token created before, and read some values from configuration. They can be used on multiple html tag (they not impact semantic) and can make in place style for children elements.
+
+Like in design system, your components can have visual variation.
+
+Note: This is style componant and they not related to JS componants like vue.js or react.
 
 ### Exemple:
+
+`component/Btn.scss` will be build using a lot of helper like text or spacing, but also will some configuration values like border style, size or radius. In fact you can show all varient and stat of this element like in a storybook.
 
 ## Contact
 
 ### Author
+
+Jordan Dey
+
+https://bit.ly/m/JordanDey
 
 ### Issues
