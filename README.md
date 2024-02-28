@@ -58,10 +58,6 @@ If you put `$spaceValue: 0.2em;` and `$regulatedMultiplicators: 0, 1, 2, 3, 4, 5
 
 ## Helper
 
-When your rules match your design system, helpers will produce for you design token usable every where in your project.
-
-## Helper
-
 When your rules match your design system, helpers will produce design tokens usable everywhere in your project.
 
 ### Example:
