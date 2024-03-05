@@ -14,10 +14,10 @@
 
 // use "form" class
 .form {
+
   // ------------------------------------
   // Label
   // ------------------------------------
-
   label {
     @extend .mb-2;
 
@@ -27,115 +27,68 @@
   label,
   legend {
     @extend .text-regular;
+    @extend .text-title;
   }
 
   fieldset {
     @extend .mb-4;
-    @extend .p-5;
-    @include borders.getStyles();
+    @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
 
     width: 100%;
+    padding: form.$fieldsetPadding;
+    background-color: form.$inputBackgroundColor;
   }
 
   // ------------------------------------
   // Text
   // ------------------------------------
-
+  input[type="color"],
+  input[type="date"],
   input[type="email"],
+  input[type="file"],
   input[type="number"],
-  input[type="tel"],
-  input[type="text"],
   input[type="password"],
   input[type="search"],
-  input[type="date"],
-  textarea {
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  textarea,
+  select {
     @extend .mb-4;
-    @extend .px-3;
-    @extend .py-2;
     @extend .text-regular;
-    @include borders.getStyles();
+    @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
 
     width: 100%;
     max-width: none;
-    background-color: colors.$white;
+    padding: form.$inputPadding;
+    background-color: form.$inputBackgroundColor;
+    color: form.$inputValueColor;
     font-family: fonts.$base;
     transition: animation.$duration-basic;
 
     &:focus,
     &:active {
-      border-color: colors.$black;
+      border-color: form.$inputFocusBorderColor;
     }
 
     &[disabled] {
-      background-color: colors.$grey-light;
+      background-color: form.$inputDisabledColor;
     }
   }
 
+  select {
+    @extend .text-body;
+  }
+
   textarea {
-    min-height: 14rem;
+    min-height: form.$textareaHeight;
     vertical-align: middle;
   }
 
   // ------------------------------------
-  // Checkbox
+  // Checkbox / Radio
   // ------------------------------------
-
-  input[type="checkbox"] {
-    opacity: 0;
-    position: fixed;
-    left: -99px;
-
-    &:focus-visible + label {
-      @extend .accessibility-focusVisible;
-    }
-
-    & + label {
-      @extend .mb-4;
-      @extend .text-regular;
-
-      position: relative;
-      display: block;
-      padding-left: form.$checkboxSize * 1.5;
-      line-height: form.$checkboxSize;
-      user-select: none;
-      cursor: pointer;
-
-      &::before {
-        @include borders.getStyles();
-
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        display: inline-block;
-        width: form.$checkboxSize;
-        height: form.$checkboxSize;
-      }
-    }
-
-    &:checked + label:before {
-      content: "✓";
-      background-color: colors.$primary;
-      text-align: center;
-      font-size: calc(form.$checkboxSize - borders.$defaultSize);
-      line-height: 1;
-      color: colors.$white;
-    }
-
-    &[disabled] + label::before {
-      background-color: colors.$grey-light;
-    }
-
-    &[disabled]:checked + label::before {
-      background-color: colors.$grey-dark;
-    }
-  }
-
-  // ------------------------------------
-  // Radio
-  // ------------------------------------
-
+  input[type="checkbox"],
   input[type="radio"] {
     opacity: 0;
     position: fixed;
@@ -148,16 +101,15 @@
     & + label {
       @extend .mb-4;
       @extend .text-regular;
+      @extend .text-body;
 
       position: relative;
       display: block;
-      padding-left: form.$radioSize * 1.5;
-      line-height: form.$radioSize;
       user-select: none;
       cursor: pointer;
 
       &::before {
-        @include borders.getStyles();
+        @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
 
         content: "";
         position: absolute;
@@ -165,6 +117,50 @@
         top: 50%;
         transform: translateY(-50%);
         display: inline-block;
+      }
+    }
+
+    &:checked + label::before {
+      background-color: form.$inputAccentColor;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+
+  // Checkbox
+  input[type="checkbox"] {
+    & + label {
+      padding-left: calc(form.$checkboxSize + form.$checkboxSpaceAfter);
+      line-height: form.$checkboxSize;
+
+      &::before {
+        width: form.$checkboxSize;
+        height: form.$checkboxSize;
+      }
+    }
+
+    &:checked + label::before {
+      content: "✓";
+      font-size: calc(form.$checkboxSize - form.$inputBorderSize * 2);
+      color: form.$checkboxMarkColor;
+    }
+
+    &[disabled] + label::before {
+      background-color: form.$checkboxDisabledColor;
+    }
+
+    &[disabled]:checked + label::before {
+      background-color: form.$checkboxActiveDisabledColor;
+    }
+  }
+
+  // Radio
+  input[type="radio"] {
+    & + label {
+      padding-left: calc(form.$radioSize + form.$radioSpaceAfter);
+      line-height: form.$radioSize;
+
+      &::before {
         width: form.$radioSize;
         height: form.$radioSize;
         border-radius: 50%;
@@ -172,43 +168,17 @@
     }
 
     &:checked + label::before {
-      background-color: colors.$primary;
+      content: "•";
+      font-size: calc(form.$radioSize - form.$inputBorderSize * 2);
+      color: form.$radioMarkColor;
     }
 
     &[disabled] + label::before {
-      background: colors.$grey-light;
+      background: form.$radioDisabledColor;
     }
 
     &[disabled]:checked + label::before {
-      border-color: colors.$grey;
-      background: colors.$grey-dark;
-    }
-  }
-
-  // ------------------------------------
-  // Select
-  // ------------------------------------
-
-  select {
-    @extend .mb-4;
-    @extend .px-3;
-    @extend .py-2;
-    @extend .text-regular;
-    @extend .text-body;
-    @include borders.getStyles();
-
-    width: 100%;
-    max-width: none;
-    background-color: colors.$white;
-    color: colors.$black;
-
-    &:focus,
-    &:active {
-      border-color: colors.$black;
-    }
-
-    &[disabled] {
-      background-color: colors.$grey-light;
+      background: form.$radioActiveDisabledColor;
     }
   }
 }

@@ -1,2 +1,55 @@
+// ------------------------------------
+//         Form
+// ------------------------------------
+
+// TODO JORDAN : Change camelCase to kebabe-case
+
+@use "./colors.scss";
+@use "./spaces.scss";
+@use "./borders.scss";
+
+// ------------------------------------
+// Input (impact all form elements)
+// ------------------------------------
+$inputPadding: spaces.get(3) spaces.get(2);
+
+// colors
+$inputBackgroundColor: colors.$white;
+$inputValueColor: colors.$black;
+$inputAccentColor: colors.$primary;
+$inputDisabledColor: colors.$grey-light;
+
+// borders
+$inputBorderColor: borders.$defaultColor;
+$inputFocusBorderColor: colors.$black;
+$inputBorderSize: borders.$defaultSize;
+$inputBorderStyle: borders.$defaultStyle;
+$inputBorderRadius: borders.$defaultRadius;
+
+// ------------------------------------
+// Textarea
+// ------------------------------------
+$textareaHeight: 14rem;
+
+// ------------------------------------
+// Checkbox
+// ------------------------------------
+$checkboxMarkColor: colors.$white;
+$checkboxDisabledColor: $inputDisabledColor;
+$checkboxActiveDisabledColor: colors.$grey-dark;
 $checkboxSize: 2rem;
+$checkboxSpaceAfter: spaces.get(3);
+
+// ------------------------------------
+// Radio (default use checkbox config)
+// ------------------------------------
+$radioMarkColor: $checkboxMarkColor;
+$radioDisabledColor: $checkboxDisabledColor;
+$radioActiveDisabledColor: $checkboxActiveDisabledColor;
 $radioSize: $checkboxSize;
+$radioSpaceAfter: $checkboxSpaceAfter;
+
+// ------------------------------------
+// Fieldset
+// ------------------------------------
+$fieldsetPadding: $inputPadding;
