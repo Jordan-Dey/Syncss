@@ -11,45 +11,45 @@
 // ------------------------------------
 // Input (impact all form elements)
 // ------------------------------------
-$inputPadding: spaces.get(3) spaces.get(2);
+$input-padding: spaces.get(3) spaces.get(2);
 
 // colors
-$inputBackgroundColor: colors.$white;
-$inputValueColor: colors.$black;
-$inputAccentColor: colors.$primary;
-$inputDisabledColor: colors.$grey-light;
+$input-background-color: colors.$white;
+$input-value-color: colors.$black;
+$input-accent-color: colors.$primary;
+$input-disabled-color: colors.$grey-light;
 
 // borders
-$inputBorderColor: borders.$defaultColor;
-$inputFocusBorderColor: colors.$black;
-$inputBorderSize: borders.$defaultSize;
-$inputBorderStyle: borders.$defaultStyle;
-$inputBorderRadius: borders.$defaultRadius;
+$input-border-color: borders.$default-color;
+$input-focus-border-color: colors.$black;
+$input-border-size: borders.$default-size;
+$input-border-style: borders.$default-style;
+$input-border-radius: borders.$default-radius;
 
 // ------------------------------------
 // Textarea
 // ------------------------------------
-$textareaHeight: 14rem;
+$textarea-height: 14rem;
 
 // ------------------------------------
 // Checkbox
 // ------------------------------------
-$checkboxMarkColor: colors.$white;
-$checkboxDisabledColor: $inputDisabledColor;
-$checkboxActiveDisabledColor: colors.$grey-dark;
-$checkboxSize: 2rem;
-$checkboxSpaceAfter: spaces.get(3);
+$checkbox-mark-color: colors.$white;
+$checkbox-disabled-color: $input-disabled-color;
+$checkbox-active-disabled-color: colors.$grey-dark;
+$checkbox-size: 2rem;
+$checkbox-space-after: spaces.get(3);
 
 // ------------------------------------
 // Radio (default use checkbox config)
 // ------------------------------------
-$radioMarkColor: $checkboxMarkColor;
-$radioDisabledColor: $checkboxDisabledColor;
-$radioActiveDisabledColor: $checkboxActiveDisabledColor;
-$radioSize: $checkboxSize;
-$radioSpaceAfter: $checkboxSpaceAfter;
+$radio-mark-color: $checkbox-mark-color;
+$radio-disabled-color: $checkbox-disabled-color;
+$radio-active-disabled-color: $checkbox-active-disabled-color;
+$radio-size: $checkbox-size;
+$radio-space-after: $checkbox-space-after;
 
 // ------------------------------------
 // Fieldset
 // ------------------------------------
-$fieldsetPadding: $inputPadding;
+$fieldset-padding: $input-padding;

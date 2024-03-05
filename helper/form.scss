@@ -32,11 +32,11 @@
 
   fieldset {
     @extend .mb-4;
-    @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
+    @include borders.getStyles($size: form.$input-border-size, $style: form.$input-border-style, $color:  form.$input-border-color, $radius: form.$input-border-radius);
 
     width: 100%;
-    padding: form.$fieldsetPadding;
-    background-color: form.$inputBackgroundColor;
+    padding: form.$fieldset-padding;
+    background-color: form.$input-background-color;
   }
 
   // ------------------------------------
@@ -56,23 +56,23 @@
   select {
     @extend .mb-4;
     @extend .text-regular;
-    @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
+    @include borders.getStyles($size: form.$input-border-size, $style: form.$input-border-style, $color:  form.$input-border-color, $radius: form.$input-border-radius);
 
     width: 100%;
     max-width: none;
-    padding: form.$inputPadding;
-    background-color: form.$inputBackgroundColor;
-    color: form.$inputValueColor;
+    padding: form.$input-padding;
+    background-color: form.$input-background-color;
+    color: form.$input-value-color;
     font-family: fonts.$base;
     transition: animation.$duration-basic;
 
     &:focus,
     &:active {
-      border-color: form.$inputFocusBorderColor;
+      border-color: form.$input-focus-border-color;
     }
 
     &[disabled] {
-      background-color: form.$inputDisabledColor;
+      background-color: form.$input-disabled-color;
     }
   }
 
@@ -81,7 +81,7 @@
   }
 
   textarea {
-    min-height: form.$textareaHeight;
+    min-height: form.$textarea-height;
     vertical-align: middle;
   }
 
@@ -109,7 +109,7 @@
       cursor: pointer;
 
       &::before {
-        @include borders.getStyles($size: form.$inputBorderSize, $style: form.$inputBorderStyle, $color:  form.$inputBorderColor, $radius: form.$inputBorderRadius);
+        @include borders.getStyles($size: form.$input-border-size, $style: form.$input-border-style, $color:  form.$input-border-color, $radius: form.$input-border-radius);
 
         content: "";
         position: absolute;
@@ -121,7 +121,7 @@
     }
 
     &:checked + label::before {
-      background-color: form.$inputAccentColor;
+      background-color: form.$input-accent-color;
       text-align: center;
       line-height: 1;
     }
@@ -130,55 +130,55 @@
   // Checkbox
   input[type="checkbox"] {
     & + label {
-      padding-left: calc(form.$checkboxSize + form.$checkboxSpaceAfter);
-      line-height: form.$checkboxSize;
+      padding-left: calc(form.$checkbox-size + form.$checkbox-space-after);
+      line-height: form.$checkbox-size;
 
       &::before {
-        width: form.$checkboxSize;
-        height: form.$checkboxSize;
+        width: form.$checkbox-size;
+        height: form.$checkbox-size;
       }
     }
 
     &:checked + label::before {
       content: "✓";
-      font-size: calc(form.$checkboxSize - form.$inputBorderSize * 2);
-      color: form.$checkboxMarkColor;
+      font-size: calc(form.$checkbox-size - form.$input-border-size * 2);
+      color: form.$checkbox-mark-color;
     }
 
     &[disabled] + label::before {
-      background-color: form.$checkboxDisabledColor;
+      background-color: form.$checkbox-disabled-color;
     }
 
     &[disabled]:checked + label::before {
-      background-color: form.$checkboxActiveDisabledColor;
+      background-color: form.$checkbox-active-disabled-color;
     }
   }
 
   // Radio
   input[type="radio"] {
     & + label {
-      padding-left: calc(form.$radioSize + form.$radioSpaceAfter);
-      line-height: form.$radioSize;
+      padding-left: calc(form.$radio-size + form.$radio-space-after);
+      line-height: form.$radio-size;
 
       &::before {
-        width: form.$radioSize;
-        height: form.$radioSize;
+        width: form.$radio-size;
+        height: form.$radio-size;
         border-radius: 50%;
       }
     }
 
     &:checked + label::before {
       content: "•";
-      font-size: calc(form.$radioSize - form.$inputBorderSize * 2);
-      color: form.$radioMarkColor;
+      font-size: calc(form.$radio-size - form.$input-border-size * 2);
+      color: form.$radio-mark-color;
     }
 
     &[disabled] + label::before {
-      background: form.$radioDisabledColor;
+      background: form.$radio-disabled-color;
     }
 
     &[disabled]:checked + label::before {
-      background: form.$radioActiveDisabledColor;
+      background: form.$radio-active-disabled-color;
     }
   }
 }

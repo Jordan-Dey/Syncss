@@ -137,15 +137,15 @@ iframe {
 
 // Document
 html {
-  font-size: text.$fontBase; /* fallback IE8+ */
+  font-size: text.$font-base; /* fallback IE8+ */
   // IE9-IE11 math fixing. See https://raphaelgoetter.wordpress.com/2016/07/05/lastuce-du-font-size-62-5-oui-non-ou-ca-depend/
-  font-size: calc(1 * text.$fontBase);
+  font-size: calc(1 * text.$font-base);
 }
 
 body {
   margin: 0;
   font-family: fonts.$base;
-  line-height: text.$textHeight;
-  color: text.$textColor;
+  line-height: text.$text-height;
+  color: text.$text-color;
   scroll-behavior: smooth;
 }

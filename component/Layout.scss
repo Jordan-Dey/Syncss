@@ -6,11 +6,11 @@
 
 .Layout {
   // Config
-  --central-column-range: #{layout.$layoutWidth};
+  --central-column-range: #{layout.$layout-width};
   --layout-margin: #{layout.$margin};
 
   @include mq.media(">=desktop") {
-    --layout-margin: #{layout.$desktopMargin};
+    --layout-margin: #{layout.$desktop-margin};
   }
 
   // Style
@@ -22,7 +22,7 @@
   padding-block: #{layout.$padding};
 
   @include mq.media(">=desktop") {
-    padding-block: #{layout.$desktopPadding};
+    padding-block: #{layout.$desktop-padding};
   }
 
   // Modifiers
@@ -31,11 +31,11 @@
   }
 
   &--slimLayout {
-    --central-column-range: #{layout.$slimLayoutWidth};
+    --central-column-range: #{layout.$slim-layout-width};
   }
 
   &--smallLayout {
-    --central-column-range: #{layout.$smallLayoutWidth};
+    --central-column-range: #{layout.$small-layout-width};
   }
 
   // Children style

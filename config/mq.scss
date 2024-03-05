@@ -1,16 +1,16 @@
-$breakpointsList: (
+$breakpoints-list: (
   "tablet": 768px,
   "desktop": 1024px,
 ) !default;
 
 // Include-media library documentation here : https://eduardoboucas.github.io/include-media/documentation/
 @forward "node_modules/include-media/dist/include-media" with (
-  $breakpoints: $breakpointsList
+  $breakpoints: $breakpoints-list
 );
 
 // This map is used by other modules.
 // They represent the name used in configs files and the good mq to use.
-$nameMap: (
+$name-map: (
   "mobile": "<tablet",
   "tablet": ">=tablet",
   // "onlyTablet": (
@@ -20,4 +20,4 @@ $nameMap: (
   "desktop": ">=desktop",
 );
 
-$nameAvailable: map-keys($nameMap);
+$name-available: map-keys($name-map);

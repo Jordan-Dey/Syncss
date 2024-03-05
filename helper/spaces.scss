@@ -15,12 +15,12 @@
 
 @mixin responsiveSpacing($properties, $mqValues) {
   @if type-of($mqValues) == "map" {
-    @each $mqKey, $spaceValue in $mqValues {
+    @each $mqKey, $space-value in $mqValues {
       @if $mqKey == "mobile" {
-        @include setProperties($properties, $spaceValue);
+        @include setProperties($properties, $space-value);
       } @else {
-        @include mq.media(map.get(mq.$nameMap, $mqKey)...) {
-          @include setProperties($properties, $spaceValue);
+        @include mq.media(map.get(mq.$name-map, $mqKey)...) {
+          @include setProperties($properties, $space-value);
         }
       }
     }

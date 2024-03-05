@@ -1,16 +1,16 @@
 @use "sass:list";
 
-$spaceValue: 5px;
-$regulatedMultiplicators: 0, 1, 2, 3, 4, 6, 10, 20, 40;
+$space-value: 5px;
+$regulated-multiplicators: 0, 1, 2, 3, 4, 6, 10, 20, 40;
 
-$regulatedSpacing: ();
-@each $multiplicator in $regulatedMultiplicators {
-  $finalValue: $spaceValue * $multiplicator;
-  $regulatedSpacing: list.append($regulatedSpacing, $finalValue);
+$regulated-spacing: ();
+@each $multiplicator in $regulated-multiplicators {
+  $final-value: $space-value * $multiplicator;
+  $regulated-spacing: list.append($regulated-spacing, $final-value);
 }
 
 @function get($key) {
-  @return nth($regulatedSpacing, $key + 1);
+  @return nth($regulated-spacing, $key + 1);
 }
 
 $config: (

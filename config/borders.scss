@@ -2,25 +2,25 @@
 
 @use "./colors.scss";
 
-$defaultStyle: solid;
+$default-style: solid;
 
-$smallSize: 1px;
-$defaultSize: 1.5px;
-$largeSize: 2px;
+$small-size: 1px;
+$default-size: 1.5px;
+$large-size: 2px;
 
-$smallRadius: 0;
-$defaultRadius: 0;
-$largeRadius: 0;
+$small-radius: 0;
+$default-radius: 0;
+$large-radius: 0;
 
-$defaultType: $defaultSize $defaultStyle;
-$defaultColor: colors.$grey;
+$default-type: $default-size $default-style;
+$default-color: colors.$grey;
 
 @mixin getStyles($size: null, $style: null, $color: null, $radius: null) {
-  $computedSize: $size or $defaultSize;
-  $computedStyle: $style or $defaultStyle;
-  $computedColor: $color or $defaultColor;
-  $computedRadius: $radius or $defaultRadius;
+  $computed-size: $size or $default-size;
+  $computed-style: $style or $default-style;
+  $computed-color: $color or $default-color;
+  $computed-radius: $radius or $default-radius;
 
-  border: $computedSize $computedStyle $computedColor;
-  border-radius: $computedRadius;
+  border: $computed-size $computed-style $computed-color;
+  border-radius: $computed-radius;
 }
