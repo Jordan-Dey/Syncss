@@ -1,3 +1,5 @@
+<img src="https://github.com/Jordan-Dey/Syncss/assets/143161975/2358d2eb-0e25-4f0e-a34a-657b739d00e8" width="250">
+
 # Syncss
 
 A lightweight SASS starter for swiftly crafting design systems, tailored to reflect your design rules.
