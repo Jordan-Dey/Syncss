@@ -1,0 +1,29 @@
+// ---------------------------------
+//             Layout
+// ---------------------------------
+@use "../config/layout.scss";
+@use "../config/mq.scss";
+
+.layout {
+  width: 100%;
+  max-width: layout.$layout-width;
+  margin: auto;
+  padding: layout.$paddingTop layout.$paddingX layout.$paddingBottom layout.$paddingX;
+
+  @include mq.media(">=desktop") {
+    padding: layout.$desktop-paddingTop layout.$desktop-paddingX layout.$desktop-paddingBottom layout.$desktop-paddingX;
+  }
+}
+
+.layout-fullHeight {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.layout-slimLayout {
+  max-width: layout.$slim-layout-width;
+}
+
+.layout-smallLayout {
+  max-width: layout.$small-layout-width;
+}

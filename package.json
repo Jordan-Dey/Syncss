@@ -1,8 +1,9 @@
 {
   "name": "syncss",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A lightweight SASS starter for swiftly crafting design systems, tailored to reflect your design rules.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "postinstall": "node ./post-install.js"
   },
@@ -30,5 +31,8 @@
     "node-sass": "^9.0.0",
     "sass": "^1.71.0",
     "sass-loader": "^14.1.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.2.0"
   }
 }

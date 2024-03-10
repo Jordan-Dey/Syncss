@@ -4,8 +4,8 @@
 
 $default-style: solid;
 
-$small-size: 1px;
-$default-size: 1.5px;
+$small-size: .5px;
+$default-size: 1px;
 $large-size: 2px;
 
 $small-radius: 0;
@@ -15,12 +15,24 @@ $large-radius: 0;
 $default-type: $default-size $default-style;
 $default-color: colors.$grey;
 
-@mixin getStyles($size: null, $style: null, $color: null, $radius: null) {
-  $computed-size: $size or $default-size;
-  $computed-style: $style or $default-style;
-  $computed-color: $color or $default-color;
-  $computed-radius: $radius or $default-radius;
-
-  border: $computed-size $computed-style $computed-color;
-  border-radius: $computed-radius;
-}
+$config: (
+  "sm": (
+    "size": $small-size,
+  ),
+  "md": (
+    "size": $default-size,
+  ),
+  "lg": (
+    "size": $large-size,
+  ),
+  // "foo": (
+  //   "radius": $small-radius,
+  //   "color": blue,
+  //   "style": dotted
+  //   "desktop": (
+  //     "radius": $default-radius,
+  //     "color": red,
+  //     "style": dashed
+  //   )
+  // )
+);

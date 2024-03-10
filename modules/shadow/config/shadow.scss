@@ -1,0 +1,31 @@
+@use "./colors.scss";
+
+$inset: false;
+$offset-x: 0;
+$offset-y: 0;
+$blur-radius: 5px;
+$spread-radius: 1px;
+$color: colors.$black;
+
+@function getLevelProperties($level: 1) {
+    @return (
+        "offset-x": $offset-x,
+        "offset-y": $offset-y,
+        "blur-radius": $blur-radius * $level,
+        "spread-radius": $spread-radius * $level,
+    );
+}
+
+// shadow levels
+$config: (
+    getLevelProperties(1),
+    getLevelProperties(2),
+    map-merge(
+        getLevelProperties(2),
+        ("desktop": getLevelProperties(3))
+    ),
+);
+
+@function getLevelConfig($level) {
+    @return nth($config, $level);
+}

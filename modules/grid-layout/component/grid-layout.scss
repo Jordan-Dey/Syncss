@@ -1,10 +1,10 @@
 // ---------------------------------
-//             Layout
+//            Grid Layout
 // ---------------------------------
 @use "../config/layout.scss";
 @use "../config/mq.scss";
 
-.Layout {
+.GridLayout {
   // Config
   --central-column-range: #{layout.$layout-width};
   --layout-margin: #{layout.$margin};
@@ -19,15 +19,15 @@
     minmax(var(--layout-margin), 1fr)
     minmax(auto, var(--central-column-range))
     minmax(var(--layout-margin), 1fr);
-  padding-block: #{layout.$padding};
+    padding: layout.$paddingTop layout.$paddingX layout.$paddingBottom layout.$paddingX;
 
   @include mq.media(">=desktop") {
-    padding-block: #{layout.$desktop-padding};
+    padding: layout.$desktop-paddingTop layout.$desktop-paddingX layout.$desktop-paddingBottom layout.$desktop-paddingX;
   }
 
-  // Modifiers
-  &--fullHeight {
-    padding-block: 0;
+  &--ySpace {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   &--slimLayout {
@@ -44,7 +44,7 @@
   }
 }
 
-.Layout-item {
+.GridLayout-item {
   &--fullWidth {
     grid-column: 1 / -1;
     width: 100%;

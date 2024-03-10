@@ -1,10 +1,16 @@
+@use "./spaces.scss";
+
 // layout width
 $layout-width: 1440px;
 $slim-layout-width: 895px;
 $small-layout-width: 450px;
 
-// spacing
-$margin: 20px;
-$desktop-margin: 70px;
-$padding: 20px;
-$desktop-padding: 25px;
+// spacing X
+$paddingX: spaces.get(4);
+$desktop-paddingX: spaces.get(5);
+// spacing top
+$paddingTop: spaces.get(6);
+$desktop-paddingTop: spaces.get(6);
+// spacing bottom
+$paddingBottom: spaces.get(6);
+$desktop-paddingBottom: spaces.get(6);

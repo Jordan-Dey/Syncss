@@ -1,0 +1,69 @@
+// ------------------------------------
+//                Shadow
+// ------------------------------------
+
+@use "../config/mq.scss";
+@use "../config/shadow.scss";
+
+@mixin getShadowStyle($inset: shadow.$inset, $offset-x: shadow.$offset-x, $offset-y: shadow.$offset-y, $blur-radius: shadow.$blur-radius, $spread-radius: shadow.$spread-radius, $color: shadow.$color) {
+    $insetProperty: if($inset == true,'inset','');
+    box-shadow: unquote($insetProperty) $offset-x $offset-y $blur-radius $spread-radius $color;
+}
+
+@mixin getShadowLevelStyles($level: 1, $options: ()) {
+    $level-config: shadow.getLevelConfig($level);
+
+    // load first level config or take default shadow configuration (Values of $options have priority)
+    $inset: map-get($options, "inset") or shadow.$inset;
+    $offset-x: map-get($options, "offset-x") or map-get($level-config, "offset-x") or shadow.$offset-x;
+    $offset-y: map-get($options, "offset-y") or map-get($level-config, "offset-y") or shadow.$offset-y;
+    $blur-radius: map-get($options, "blur-radius") or map-get($level-config, "blur-radius") or shadow.$blur-radius * $level;
+    $spread-radius: map-get($options, "spread-radius") or map-get($level-config, "spread-radius") or shadow.$spread-radius * $level;
+    $color: map-get($options, "color") or shadow.$color;
+
+    // check if configuration contains media query
+    @each $mq-name, $mq-query in mq.$name-map {
+        @if map-get($level-config, $mq-name) {
+            // If yes, load media query configuration
+            $mq-values: map-get($level-config, $mq-name);
+            $mq-offset-x:  map-get($mq-values, "offset-x") or $mq-offset-x;
+            $mq-offset-y:  map-get($mq-values, "offset-y") or $mq-offset-y;
+            $mq-blur-radius:  map-get($mq-values, "blur-radius") or $mq-blur-radius;
+            $mq-spread-radius:  map-get($mq-values, "spread-radius") or $mq-spread-radius;
+        
+            // If media query is for mobile, load they config at first level
+            @if ($mq-name == "mobile") {
+                $offset-x:  $mq-offset-x;
+                $offset-y:  $mq-offset-y;
+                $blur-radius:  $mq-blur-radius;
+                $spread-radius:  $mq-spread-radius;
+            }  @else {
+                // Create media querry with custom properties
+                @include mq.media($mq-query) {
+                    @include getShadowStyle($inset: $inset, $offset-x: $mq-offset-x, $offset-y: $mq-offset-y, $blur-radius: $mq-blur-radius, $spread-radius: $mq-spread-radius, $color: $color);
+                }
+            }
+        }
+    }    
+
+    @include getShadowStyle($inset, $offset-x, $offset-y, $blur-radius, $spread-radius, $color);
+}
+
+// Shadow level
+@for $level from 1 through length(shadow.$config) {
+    .shadow-#{$level} {
+        @include getShadowLevelStyles($level);
+    }
+
+    .shadow-inset#{$level} {
+        @include getShadowLevelStyles($level, $options: ("inset": true));
+    }
+
+    .shadow-currentColor#{$level} {
+        @include getShadowLevelStyles($level, $options: ("color": unquote("")));
+    }
+
+    .shadow-insetCurrentColor#{$level} {
+        @include getShadowLevelStyles($level, $options: ("inset": true, "color": unquote("")));
+    }
+}

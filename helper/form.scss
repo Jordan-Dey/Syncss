@@ -2,13 +2,13 @@
 //                 Form
 // ------------------------------------
 
-@use "../config/borders.scss";
 @use "../config/colors.scss";
 @use "../config/fonts.scss";
 @use "../config/form.scss";
 @use "../config/animation.scss";
 
 @use "../helper/accessibility.scss";
+@use "../helper/borders.scss";
 @use "../helper/spaces.scss";
 @use "../helper/text.scss";
 

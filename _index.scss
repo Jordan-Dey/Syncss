@@ -6,7 +6,8 @@
 @use "./helper/position.scss";
 @use "./helper/spaces.scss";
 @use "./helper/text.scss";
+@use "./helper/borders.scss";
+@use "./helper/layout.scss";
 @use "./helper/form.scss";
 
-@use "./component/Btn.scss";
-@use "./component/Layout.scss";
+@use "./component/btn.scss";

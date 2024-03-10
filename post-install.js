@@ -1,35 +1,57 @@
-const fs = require('fs-extra');
+import fs from 'fs-extra';
+import { loadJsonFile, copyFile, copyFolder } from './installer.js';
 
-const sourcePath = './';
-const sourceFolders = ['componant', 'config', 'helper', 'utilities'];
-// TODO JORDAN : read this in config file.
-const destinationPath = '../../src/styles/';
+const sourcePath = '.';
+const projectPath = '../..';
+const projectConfig = loadJsonFile(`${projectPath}/syncss.json`);
+const sourceFolders = ['component', 'config', 'helper', 'utilities'];
+const stylesFolderPath = projectConfig?.installPath || "/src/styles";
+const destinationPath = `${projectPath}${ stylesFolderPath }`;
+
+console.log(`Syncss core install :`);
 
 // Check if destination path exist
 if (!fs.existsSync(destinationPath)) {
   // Create destination path
-  fs.mkdirSync(destinationPath);
+  fs.mkdirSync(destinationPath, {recursive: true});
 }
 
-function copyFiles(source, destination) {
-  const files = fs.readdirSync(source);
-  
-  files.forEach(file => {
-    const sourceFilePath = `${source}/${file}`;
-    const destinationFilePath = `${destination}/${file}`;
-    
-    // Check if file already exists
-    if (!fs.existsSync(destinationFilePath)) {
-      // Copy file
-      fs.copySync(sourceFilePath, destinationFilePath);
-      console.log(`\x1b[32m ${sourceFilePath} created ! \x1b[0m`);
-    } else {
-      console.log(`\x1b[33m ${destinationFilePath} already exists... Skiped. \x1b[0m`);
-    }
-  });
-}
-
+// Copy each source folder to project directory
 sourceFolders.forEach(folder => {
-  copyFiles(`${sourcePath}${folder}`, `${destinationPath}${folder}`);
+  const sourceFolder = `${sourcePath}/${folder}`;
+  const destinationFolder = `${destinationPath}/${folder}`;
+  const options = { excludeFiles: projectConfig?.excludeFiles?.map((excludeFile) => {
+    return `${sourcePath}${excludeFile}`
+  }) };
+  copyFolder(sourceFolder, destinationFolder, options);
 });
-fs.copySync(`${sourcePath}_index.scss`, `${destinationPath}_index.scss`);
+
+// Copy _index.scss to project directory
+copyFile(`${sourcePath}/_index.scss`, `${destinationPath}/_index.scss`);
+
+// Install modules
+const modulesConfig = projectConfig?.modules;
+if (modulesConfig?.length) {
+  console.log(`Syncss module install :`);
+
+  const modulesFolder = `${sourcePath}/modules`;
+
+  for (const moduleName of modulesConfig) {
+    const modulePath = `${modulesFolder}/${moduleName}`;
+    if (!fs.existsSync(modulePath)) {
+      console.log(`\x1b[33m Skipped : ${modulePath} does not exist... \x1b[0m`);
+      continue;
+    }
+
+    console.log(`${moduleName} install :`);
+
+    const moduleInstaller = await import(`./modules/${moduleName}/install.js`);
+    moduleInstaller.init(projectConfig);
+
+    console.log(`${moduleName} module installed !`);
+  }
+}
+
+console.log(`-------------------------`);
+console.log(`✨ Syncss installed ! ✨`);
+console.log(`-------------------------`);

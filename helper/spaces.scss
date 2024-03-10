@@ -13,81 +13,81 @@
   }
 }
 
-@mixin responsiveSpacing($properties, $mqValues) {
-  @if type-of($mqValues) == "map" {
-    @each $mqKey, $space-value in $mqValues {
-      @if $mqKey == "mobile" {
+@mixin responsiveSpacing($properties, $mq-values) {
+  @if type-of($mq-values) == "map" {
+    @each $mq-key, $space-value in $mq-values {
+      @if $mq-key == "mobile" {
         @include setProperties($properties, $space-value);
       } @else {
-        @include mq.media(map.get(mq.$name-map, $mqKey)...) {
+        @include mq.media(map.get(mq.$name-map, $mq-key)...) {
           @include setProperties($properties, $space-value);
         }
       }
     }
   } @else {
-    @include setProperties($properties, $mqValues);
+    @include setProperties($properties, $mq-values);
   }
 }
 
 @for $i from 1 through length(spaces.$config) {
-  $spaceIdentifier: $i - 1;
-  $configValue: nth(spaces.$config, $i);
+  $space-identifier: $i - 1;
+  $config-value: nth(spaces.$config, $i);
 
   // Margin
-  .m-#{$spaceIdentifier} {
-    @include responsiveSpacing("margin", $configValue);
+  .m-#{$space-identifier} {
+    @include responsiveSpacing("margin", $config-value);
   }
 
-  .mt-#{$spaceIdentifier} {
-    @include responsiveSpacing("margin-top", $configValue);
+  .mt-#{$space-identifier} {
+    @include responsiveSpacing("margin-top", $config-value);
   }
 
-  .mb-#{$spaceIdentifier} {
-    @include responsiveSpacing("margin-bottom", $configValue);
+  .mb-#{$space-identifier} {
+    @include responsiveSpacing("margin-bottom", $config-value);
   }
 
-  .ml-#{$spaceIdentifier} {
-    @include responsiveSpacing("margin-left", $configValue);
+  .ml-#{$space-identifier} {
+    @include responsiveSpacing("margin-left", $config-value);
   }
 
-  .mr-#{$spaceIdentifier} {
-    @include responsiveSpacing("margin-right", $configValue);
+  .mr-#{$space-identifier} {
+    @include responsiveSpacing("margin-right", $config-value);
   }
 
-  .mx-#{$spaceIdentifier} {
-    @include responsiveSpacing(("margin-left", "margin-right"), $configValue);
+  .mx-#{$space-identifier} {
+    @include responsiveSpacing(("margin-left", "margin-right"), $config-value);
   }
 
-  .my-#{$spaceIdentifier} {
-    @include responsiveSpacing(("margin-top", "margin-bottom"), $configValue);
+  .my-#{$space-identifier} {
+    @include responsiveSpacing(("margin-top", "margin-bottom"), $config-value);
   }
 
   // Padding
-  .p-#{$spaceIdentifier} {
-    @include responsiveSpacing("padding", $configValue);
+  .p-#{$space-identifier} {
+    @include responsiveSpacing("padding", $config-value);
   }
 
-  .pt-#{$spaceIdentifier} {
-    @include responsiveSpacing("padding-top", $configValue);
+  .pt-#{$space-identifier} {
+    @include responsiveSpacing("padding-top", $config-value);
   }
 
-  .pb-#{$spaceIdentifier} {
-    @include responsiveSpacing("padding-bottom", $configValue);
+  .pb-#{$space-identifier} {
+    @include responsiveSpacing("padding-bottom", $config-value);
   }
 
-  .pl-#{$spaceIdentifier} {
-    @include responsiveSpacing("padding-left", $configValue);
+  .pl-#{$space-identifier} {
+    @include responsiveSpacing("padding-left", $config-value);
   }
 
-  .pr-#{$spaceIdentifier} {
-    @include responsiveSpacing("padding-right", $configValue);
+  .pr-#{$space-identifier} {
+    @include responsiveSpacing("padding-right", $config-value);
   }
 
-  .px-#{$spaceIdentifier} {
-    @include responsiveSpacing(("padding-left", "padding-right"), $configValue);
+  .px-#{$space-identifier} {
+    @include responsiveSpacing(("padding-left", "padding-right"), $config-value);
   }
 
-  .py-#{$spaceIdentifier} {
-    @include responsiveSpacing(("padding-top", "padding-bottom"), $configValue);
+  .py-#{$space-identifier} {
+    @include responsiveSpacing(("padding-top", "padding-bottom"), $config-value);
   }
 }

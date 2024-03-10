@@ -1,0 +1,68 @@
+// ---------------------------------
+//              Chip
+// ---------------------------------
+
+@use "../config/colors";
+
+@use "../helper/borders";
+@use "../helper/text";
+
+.Chip {
+  @extend .px-3;
+  @extend .py-1;
+  @extend .text-small;
+  @extend .text-title;
+  @extend .text-bold;
+  @include borders.getStyles($radius: 999px);
+
+  display: inline-block;
+  vertical-align: baseline;
+  width: auto;
+  background-color: colors.$grey-light;
+  text-decoration: none;
+  text-wrap: nowrap;
+}
+
+// ---------------------------------
+// Style
+// ---------------------------------
+
+.Chip--plain {
+    border-color: colors.$grey-light;
+}
+
+.Chip--outlined {
+    color: colors.$grey-dark;
+    background-color: colors.$transparent;
+}
+
+// ---------------------------------
+// Colors
+// ---------------------------------
+
+@mixin chipColorStyles($color) {
+    &:not(.Chip--outlined) {
+        background-color: $color;
+    }
+
+    &.Chip--outlined,
+    &.Chip--plain {
+        border-color: $color;
+    }
+
+    &.Chip--outlined {
+        color: $color;
+    }
+
+    &.Chip--plain {
+        color: colors.$white;
+    }
+}
+
+.Chip--primary {
+    @include chipColorStyles(colors.$primary);
+}
+
+.Chip--secondary {
+    @include chipColorStyles(colors.$secondary);
+}

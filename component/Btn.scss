@@ -4,10 +4,10 @@
 
 @use "../config/mq";
 @use "../config/colors";
-@use "../config/borders";
 
-@use "../helper/text";
+@use "../helper/borders";
 @use "../helper/spaces";
+@use "../helper/text";
 
 .Btn {
   @extend .text-regular;
