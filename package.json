@@ -1,6 +1,6 @@
 {
   "name": "syncss",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A lightweight SASS starter for swiftly crafting design systems, tailored to reflect your design rules.",
   "main": "index.js",
   "type": "module",
