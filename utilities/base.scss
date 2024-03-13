@@ -29,6 +29,9 @@ html {
   outline-width: 0;
 }
 
+/**
+ * Use accessibility focus styles
+ */
 button:focus-visible,
 a:focus-visible,
 input[type="checkbox"]:focus-visible,
@@ -86,6 +89,7 @@ figure {
   margin: 0;
 }
 
+// Reset list styles.
 ul,
 nav,
 ol {
