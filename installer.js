@@ -1,3 +1,4 @@
+import path from 'path';
 import fs from 'fs-extra';
 
 export function copyFile(source, destination) {
@@ -16,8 +17,8 @@ export function copyFile(source, destination) {
 export function copyFiles(source, destination, files, options = undefined) {
   // return true if all files has been copied
   return files.map(file => {
-    const sourceFilePath = `${source}/${file}`;
-    const destinationFilePath = `${destination}/${file}`;
+    const sourceFilePath = path.resolve(source, `./${file}`);
+    const destinationFilePath = path.resolve(destination, `./${file}`);
 
     if (options?.excludeFiles?.includes(`${sourceFilePath}`)) {
       console.log(`\x1b[33m Skipped : ${destinationFilePath} has been excluded by config... \x1b[0m`);
@@ -40,10 +41,13 @@ export function appendFile(filePath, text) {
   console.log(`\x1b[32m Update : ${filePath} \x1b[0m`);
 }
 
-export function getDirectories(path) {
+export function getDirectories(directoryPath) {
   try {
-    const files = fs.readdirSync(path);
-    const directories = files.filter(file => fs.statSync(`${path}/${file}`).isDirectory());
+    const files = fs.readdirSync(directoryPath);
+    const directories = files.filter(file => {
+      const filePath = path.resolve(directoryPath, `./${file}`);
+      return fs.statSync(filePath).isDirectory()
+    });
     return directories;
   } catch (err) {
     throw err;
@@ -55,7 +59,7 @@ export function loadJsonFile(filePath) {
     if (!fs.existsSync(filePath)) {
       return false;
     }
-    
+   
     const jsonData = fs.readFileSync(filePath, 'utf8');
     const jsonObject = JSON.parse(jsonData);
     return jsonObject;
@@ -65,38 +69,38 @@ export function loadJsonFile(filePath) {
 }
 
 export function createModules(projectConfig) {
-  const projectPath = '../..';
+  const projectPath = path.resolve('.', '../..');
   const stylesFolderPath = projectConfig?.installPath || "/src/styles";
-  const destinationPath = `${projectPath}${ stylesFolderPath }`;
+  const destinationPath = path.resolve(projectPath, `.${stylesFolderPath}`);
 
   return { projectPath, stylesFolderPath, destinationPath };
 }
 
 export function installModule(moduleName, projectConfig, options = {}) {
-  const sourcePath = '.';
-  const modulePath = `${sourcePath}/modules/${moduleName}`;
-  const projectPath = '../..';
+  const sourcePath = path.resolve('.');
+  const modulePath = path.resolve(sourcePath, `./modules/${moduleName}`);
+  const projectPath = path.resolve(sourcePath, '../..');
   const stylesFolderPath = projectConfig?.installPath || "/src/styles";
-  const destinationPath = `${projectPath}${ stylesFolderPath }`;
+  const destinationPath = path.resolve(projectPath, `.${stylesFolderPath}`);
 
   if (options.requiredDefaultFiles) {
     // Copy required files
     options.requiredDefaultFiles.forEach((requiredFile) => {
       const sourceFilePath = sourcePath + requiredFile;
       const destinationFilePath = destinationPath + requiredFile;
-  
+ 
       // Check if required file exists in destination project and create it if not
       copyFile(sourceFilePath, destinationFilePath);
     });
   }
-  
+ 
   // Load directories list in module
   const moduleFolders = getDirectories(modulePath);
-  
+ 
   // Copy each source folder to project directory
   return moduleFolders.map(folder => {
-    const moduleFolder = `${modulePath}/${folder}`;
-    const destinationFolder = `${destinationPath}/${folder}`;
+    const moduleFolder = path.resolve(modulePath, `./${folder}`);
+    const destinationFolder = path.resolve(destinationPath, `./${folder}`);
     return copyFolder(moduleFolder, destinationFolder);
   }).reduce((foldersResult, folderResult) => { return foldersResult && folderResult }, true);
 }

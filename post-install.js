@@ -1,12 +1,13 @@
+import path from 'path';
 import fs from 'fs-extra';
 import { loadJsonFile, copyFile, copyFolder } from './installer.js';
 
-const sourcePath = '.';
-const projectPath = '../..';
-const projectConfig = loadJsonFile(`${projectPath}/syncss.json`);
+const sourcePath = path.resolve('.');
+const projectPath = path.resolve(sourcePath, '../..');
+const projectConfig = loadJsonFile(path.resolve(projectPath, './syncss.json'));
 const sourceFolders = ['component', 'config', 'helper', 'utilities'];
 const stylesFolderPath = projectConfig?.installPath || "/src/styles";
-const destinationPath = `${projectPath}${ stylesFolderPath }`;
+const destinationPath = path.resolve(projectPath, `.${stylesFolderPath}`);
 
 console.log(`Syncss core install :`);
 
@@ -18,28 +19,30 @@ if (!fs.existsSync(destinationPath)) {
 
 // Copy each source folder to project directory
 sourceFolders.forEach(folder => {
-  const sourceFolder = `${sourcePath}/${folder}`;
-  const destinationFolder = `${destinationPath}/${folder}`;
+  const sourceFolder = path.resolve(sourcePath, `./${folder}`);
+  const destinationFolder = path.resolve(destinationPath, `./${folder}`);
   const options = { excludeFiles: projectConfig?.excludeFiles?.map((excludeFile) => {
-    return `${sourcePath}${excludeFile}`
+    return path.resolve(sourcePath, `.${excludeFile}`);
   }) };
   copyFolder(sourceFolder, destinationFolder, options);
 });
 
 // Copy _index.scss to project directory
-copyFile(`${sourcePath}/_index.scss`, `${destinationPath}/_index.scss`);
+const indexSourcePath = path.resolve(sourcePath, `./_index.scss`);
+const indexDestinationPath = path.resolve(destinationPath, `./_index.scss`);
+copyFile(indexSourcePath, indexDestinationPath);
 
 // Install modules
 const modulesConfig = projectConfig?.modules;
 if (modulesConfig?.length) {
   console.log(`Syncss module install :`);
 
-  const modulesFolder = `${sourcePath}/modules`;
+  const modulesFolder = path.resolve(sourcePath, `./modules`);
 
   for (const moduleName of modulesConfig) {
-    const modulePath = `${modulesFolder}/${moduleName}`;
+    const modulePath = path.resolve(modulesFolder, `./${moduleName}`);
     if (!fs.existsSync(modulePath)) {
-      console.log(`\x1b[33m Skipped : ${modulePath} does not exist... \x1b[0m`);
+      console.log(`\x1b[33m Skipped : ${moduleName} does not exist... \x1b[0m`);
       continue;
     }
 

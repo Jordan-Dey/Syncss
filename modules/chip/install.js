@@ -1,3 +1,4 @@
+import path from 'path';
 import { appendFile, createModules, installModule } from '../../installer.js';
 
 export function init(projectConfig) {
@@ -12,7 +13,7 @@ export function init(projectConfig) {
   if (moduleInstalled) {
     // Setup files to update
     const indexFile = '/_index.scss';
-    const destinationIndexPath = destinationPath + indexFile;
+    const destinationIndexPath = path.resolve(destinationPath, `.${indexFile}`);
 
     // Import files into _index.scss
     const newsImportPart = [
