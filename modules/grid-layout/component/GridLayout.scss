@@ -4,7 +4,7 @@
 @use "../config/layout.scss";
 @use "../config/mq.scss";
 
-.GridLayout {
+.Grid-layout {
   // Config
   --central-column-range: #{layout.$layout-width};
   --layout-margin: #{layout.$margin};
@@ -25,16 +25,16 @@
     padding: layout.$desktop-paddingTop layout.$desktop-paddingX layout.$desktop-paddingBottom layout.$desktop-paddingX;
   }
 
-  &--ySpace {
+  &--y-space {
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  &--slimLayout {
+  &--slim {
     --central-column-range: #{layout.$slim-layout-width};
   }
 
-  &--smallLayout {
+  &--small{
     --central-column-range: #{layout.$small-layout-width};
   }
 
@@ -44,8 +44,8 @@
   }
 }
 
-.GridLayout-item {
-  &--fullWidth {
+.Grid-layout__item {
+  &--full-width {
     grid-column: 1 / -1;
     width: 100%;
   }

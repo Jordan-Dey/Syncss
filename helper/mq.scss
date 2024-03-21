@@ -5,48 +5,48 @@
 @use "../config/mq.scss";
 
 @include mq.media(">=tablet") {
-  .mq--onlyPhone {
+  .mq-only-phone {
     display: none !important;
   }
 }
 
 @include mq.media("<desktop") {
-  .mq--onlyDesktop {
+  .mq-only-desktop {
     display: none !important;
   }
 }
 
 @include mq.media("<tablet") {
-  .mq--onlyTablet {
+  .mq-only-tablet {
     display: none !important;
   }
 }
 @include mq.media(">=desktop") {
-  .mq--onlyTablet {
+  .mq-only-tablet {
     display: none !important;
   }
 }
 
 @include mq.media("<tablet") {
-  .mq--noPhone {
+  .mq-no-phone {
     display: none !important;
   }
 }
 
 @include mq.media(">=tablet", "<desktop") {
-  .mq--noTablet {
+  .mq-no-tablet {
     display: none !important;
   }
 }
 
 @include mq.media(">=desktop") {
-  .mq--noDesktop {
+  .mq-no-desktop {
     display: none !important;
   }
 }
 
 @media print {
-  .mq--noPrint {
+  .mq-no-print {
     display: none !important;
   }
 }

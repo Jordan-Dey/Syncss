@@ -59,11 +59,11 @@
         @include getShadowLevelStyles($level, $options: ("inset": true));
     }
 
-    .shadow-currentColor#{$level} {
+    .shadow-current-color#{$level} {
         @include getShadowLevelStyles($level, $options: ("color": unquote("")));
     }
 
-    .shadow-insetCurrentColor#{$level} {
+    .shadow-inset-current-color#{$level} {
         @include getShadowLevelStyles($level, $options: ("inset": true, "color": unquote("")));
     }
 }

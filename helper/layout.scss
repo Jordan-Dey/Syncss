@@ -15,15 +15,15 @@
   }
 }
 
-.layout-fullHeight {
+.layout-full {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.layout-slimLayout {
+.layout-slim {
   max-width: layout.$slim-layout-width;
 }
 
-.layout-smallLayout {
+.layout-small {
   max-width: layout.$small-layout-width;
 }

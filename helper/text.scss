@@ -28,7 +28,7 @@
   }
 }
 
-@mixin computStyle($styleConfig) {
+@mixin computeStyle($styleConfig) {
   @each $mqKey, $properties in $styleConfig {
     @if index(mq.$name-available, $mqKey) == null {
       // in this case $mqKey is a top level property
@@ -50,7 +50,7 @@
 
 @mixin headingStyles($level) {
   $levelConfig: text.getHeadingConfig($level);
-  @include computStyle($levelConfig);
+  @include computeStyle($levelConfig);
 }
 
 h1,
