@@ -30,7 +30,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       "// form module",
-      '@use "./component/Form.scss";',
+      '@use "./component/form.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }
