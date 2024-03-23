@@ -19,10 +19,10 @@
     minmax(var(--layout-margin), 1fr)
     minmax(auto, var(--central-column-range))
     minmax(var(--layout-margin), 1fr);
-    padding: layout.$paddingTop layout.$paddingX layout.$paddingBottom layout.$paddingX;
+    padding: layout.$padding-top layout.$padding-x layout.$padding-bottom layout.$padding-x;
 
   @include mq.media(">=desktop") {
-    padding: layout.$desktop-paddingTop layout.$desktop-paddingX layout.$desktop-paddingBottom layout.$desktop-paddingX;
+    padding: layout.$desktop-padding-top layout.$desktop-padding-x layout.$desktop-padding-bottom layout.$desktop-padding-x;
   }
 
   &--full {
