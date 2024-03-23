@@ -4,7 +4,7 @@ import { appendFile, createModules, installModule } from '../../installer.js';
 export function init(projectConfig) {
   const moduleName = 'shadow';
   const { destinationPath } = createModules(projectConfig);
-  const requiredDefaultFiles = ['/config/colors.scss', '/config/mq.scss'];
+  const requiredDefaultFiles = ['/configs/colors.scss', '/configs/mq.scss'];
 
   // Install module
   const moduleInstalled = installModule(moduleName, projectConfig, { requiredDefaultFiles });
@@ -18,7 +18,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       '// shadow module',
-      '@use "./helper/shadow.scss";',
+      '@use "./helpers/shadow.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }

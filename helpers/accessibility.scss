@@ -1,6 +1,6 @@
-@use "../config/colors.scss";
+@use "../configs/colors.scss";
 
-.accessibility-focusVisible {
+.accessibility-focus-visible {
   outline: 0.4rem solid colors.$primary !important;
   outline-offset: 0.4rem !important;
 }

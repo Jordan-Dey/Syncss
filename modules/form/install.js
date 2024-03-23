@@ -5,15 +5,15 @@ export function init(projectConfig) {
   const moduleName = "form";
   const { destinationPath } = createModules(projectConfig);
   const requiredDefaultFiles = [
-    "/config/colors.scss",
-    "/config/spaces.scss",
-    "/config/borders.scss",
-    "/config/fonts.scss",
-    "/config/animation.scss",
-    "/helper/accessibility.scss",
-    "/helper/borders.scss",
-    "/helper/spaces.scss",
-    "/helper/text.scss",
+    "/configs/colors.scss",
+    "/configs/spaces.scss",
+    "/configs/borders.scss",
+    "/configs/fonts.scss",
+    "/configs/animation.scss",
+    "/helpers/accessibility.scss",
+    "/helpers/borders.scss",
+    "/helpers/spaces.scss",
+    "/helpers/text.scss",
   ];
 
   // install module
@@ -30,7 +30,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       "// form module",
-      '@use "./component/form.scss";',
+      '@use "./components/form.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }

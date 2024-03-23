@@ -2,15 +2,15 @@
 //                 Form
 // ------------------------------------
 
-@use "../config/colors.scss";
-@use "../config/fonts.scss";
-@use "../config/form.scss";
-@use "../config/animation.scss";
+@use "../configs/colors.scss";
+@use "../configs/fonts.scss";
+@use "../configs/form.scss";
+@use "../configs/animation.scss";
 
-@use "../helper/accessibility.scss";
-@use "../helper/borders.scss";
-@use "../helper/spaces.scss";
-@use "../helper/text.scss";
+@use "../helpers/accessibility.scss";
+@use "../helpers/borders.scss";
+@use "../helpers/spaces.scss";
+@use "../helpers/text.scss";
 
 // use "Form" class
 .Form {
@@ -105,7 +105,7 @@
     opacity: 0;
 
     &:focus-visible + label {
-      @extend .accessibility-focusVisible;
+      @extend .accessibility-focus-visible;
     }
 
     & + label {

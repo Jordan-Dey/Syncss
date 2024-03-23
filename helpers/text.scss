@@ -4,12 +4,12 @@
 
 @use "sass:map";
 
-@use "../config/mq.scss";
-@use "../config/colors.scss";
-@use "../config/fonts.scss";
-@use "../config/text.scss";
+@use "../configs/mq.scss";
+@use "../configs/colors.scss";
+@use "../configs/fonts.scss";
+@use "../configs/text.scss";
 
-@use "../helper/spaces.scss";
+@use "../helpers/spaces.scss";
 
 // ------------------------
 // Typography
@@ -28,7 +28,7 @@
   }
 }
 
-@mixin computStyle($styleConfig) {
+@mixin computeStyle($styleConfig) {
   @each $mqKey, $properties in $styleConfig {
     @if index(mq.$name-available, $mqKey) == null {
       // in this case $mqKey is a top level property
@@ -50,7 +50,7 @@
 
 @mixin headingStyles($level) {
   $levelConfig: text.getHeadingConfig($level);
-  @include computStyle($levelConfig);
+  @include computeStyle($levelConfig);
 }
 
 h1,
@@ -94,7 +94,7 @@ h6,
 
 @mixin bodyStyles($key) {
   $text-config: text.getTextConfig($key);
-  @include computStyle($text-config);
+  @include computeStyle($text-config);
 }
 
 small,

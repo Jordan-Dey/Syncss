@@ -2,8 +2,8 @@
 //                Shadow
 // ------------------------------------
 
-@use "../config/mq.scss";
-@use "../config/shadow.scss";
+@use "../configs/mq.scss";
+@use "../configs/shadow.scss";
 
 @mixin getShadowStyle($inset: shadow.$inset, $offset-x: shadow.$offset-x, $offset-y: shadow.$offset-y, $blur-radius: shadow.$blur-radius, $spread-radius: shadow.$spread-radius, $color: shadow.$color) {
     $insetProperty: if($inset == true,'inset','');
@@ -55,15 +55,15 @@
         @include getShadowLevelStyles($level);
     }
 
-    .shadow-inset#{$level} {
+    .shadow-inset-#{$level} {
         @include getShadowLevelStyles($level, $options: ("inset": true));
     }
 
-    .shadow-currentColor#{$level} {
+    .shadow-current-color-#{$level} {
         @include getShadowLevelStyles($level, $options: ("color": unquote("")));
     }
 
-    .shadow-insetCurrentColor#{$level} {
+    .shadow-inset-current-color-#{$level} {
         @include getShadowLevelStyles($level, $options: ("inset": true, "color": unquote("")));
     }
 }

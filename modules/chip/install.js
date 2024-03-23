@@ -4,7 +4,7 @@ import { appendFile, createModules, installModule } from '../../installer.js';
 export function init(projectConfig) {
   const moduleName = 'chip';
   const { destinationPath } = createModules(projectConfig);
-  const requiredDefaultFiles = ['/config/colors.scss', '/config/borders.scss', '/helper/text.scss'];
+  const requiredDefaultFiles = ['/configs/colors.scss', '/configs/borders.scss', '/helpers/text.scss'];
   
   // Install module
   const moduleInstalled = installModule(moduleName, projectConfig, { requiredDefaultFiles });
@@ -18,7 +18,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       '// chip module',
-      '@use "./component/chip.scss";',
+      '@use "./components/chip.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }

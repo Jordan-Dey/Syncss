@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
-@use "../config/colors.scss";
-@use "../config/fonts.scss";
-@use "../config/text.scss";
+@use "../configs/colors.scss";
+@use "../configs/fonts.scss";
+@use "../configs/text.scss";
 
-@use "../helper/accessibility.scss";
+@use "../helpers/accessibility.scss";
 
 /**
  * Set up a decent box model on the root element
@@ -37,7 +37,7 @@ a:focus-visible,
 input[type="checkbox"]:focus-visible,
 input[type="radio"]:focus-visible,
 *[tabindex]:focus-visible {
-  @extend .accessibility-focusVisible;
+  @extend .accessibility-focus-visible;
 }
 
 /**
@@ -149,7 +149,7 @@ html {
 body {
   margin: 0;
   font-family: fonts.$base;
-  font-weight: text.$text-weigth;
+  font-weight: text.$text-weight;
   line-height: text.$text-height;
   color: text.$text-color;
   scroll-behavior: smooth;

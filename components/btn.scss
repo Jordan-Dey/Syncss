@@ -2,12 +2,12 @@
 //              Btn
 // ---------------------------------
 
-@use "../config/mq";
-@use "../config/colors";
+@use "../configs/mq";
+@use "../configs/colors";
 
-@use "../helper/borders";
-@use "../helper/spaces";
-@use "../helper/text";
+@use "../helpers/borders";
+@use "../helpers/spaces";
+@use "../helpers/text";
 
 .Btn {
   @extend .text-regular;
