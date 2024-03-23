@@ -113,7 +113,7 @@ Note: These are style components and they are not related to JS components like 
 
 ### Example:
 
-`component/Btn.scss` will be built using a lot of helpers like text or spacing, but also with some configuration values like border style, size, or radius. In fact, you can showcase all variants and states of this element as in a Storybook.
+`components/Btn.scss` will be built using a lot of helpers like text or spacing, but also with some configuration values like border style, size, or radius. In fact, you can showcase all variants and states of this element as in a Storybook.
 
 ![image](https://github.com/Jordan-Dey/Syncss/assets/143161975/2c53c24a-ec8e-4925-af51-f6f82b67867e)
 
