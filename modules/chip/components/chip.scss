@@ -2,10 +2,10 @@
 //              Chip
 // ---------------------------------
 
-@use "../config/colors";
+@use "../configs/colors";
 
-@use "../helper/borders";
-@use "../helper/text";
+@use "../helpers/borders";
+@use "../helpers/text";
 
 .Chip {
   @extend .px-3;

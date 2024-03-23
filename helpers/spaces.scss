@@ -4,8 +4,8 @@
 
 @use "sass:map";
 
-@use "../config/mq.scss";
-@use "../config/spaces.scss";
+@use "../configs/mq.scss";
+@use "../configs/spaces.scss";
 
 @mixin setProperties($properties, $value) {
   @each $property in $properties {

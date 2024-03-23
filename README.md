@@ -6,7 +6,7 @@ A lightweight SASS starter for swiftly crafting design systems, tailored to refl
 
 The principle of Syncss is to isolate all the rules governing your design system into a readily accessible configuration. All the framework's code is available directly within your codebase, allowing you to easily edit it according to your needs.
 
-`config/borders.scss` contains the `$default-radius` variable. If you change this value, it will impact many visual elements (such as form inputs or buttons). The same applies to the `$default-size` variable for border size or the `$primary` variable in `config/colors.scss`.
+`configs/borders.scss` contains the `$default-radius` variable. If you change this value, it will impact many visual elements (such as form inputs or buttons). The same applies to the `$default-size` variable for border size or the `$primary` variable in `configs/colors.scss`.
 
 ![image](https://github.com/Jordan-Dey/Syncss/assets/143161975/47a26c7c-9ffd-45fe-9293-9820fb3bd254)
 
@@ -30,7 +30,7 @@ Syncss is based on a simple concept, split into three parts:
 Initially, I encourage you to browse the files contained in the 'config' folder and input your spacing values, color palette, typographies, and so on.
 
 ### Example:
-With the default `config/spaces.scss` configuration, `$space-value` is equal to `5px` and `$regulated-multiplicators` sets the multiples of this value available in your design system. With this configuration, we have this table of available spaces:
+With the default `configs/spaces.scss` configuration, `$space-value` is equal to `5px` and `$regulated-multiplicators` sets the multiples of this value available in your design system. With this configuration, we have this table of available spaces:
 
 | Key | Multiples | Value |
 | :-: |:-:| :-:|
@@ -63,10 +63,10 @@ If you put `$space-value: 0.2em;` and `$regulated-multiplicators: 0, 1, 2, 3, 4,
 When your rules match your design system, helpers will produce design tokens usable everywhere in your project.
 
 ### Example:
-With the available spacing configuration explained above, we can build more complex rules like the object in the `$config` variable of `config/spaces.scss`. This will produce design tokens like `m-[key]` (`m-0`, `p-2`, `mt-6`, `px-8`, ...) and this with responsiveness if needed.
+With the available spacing configuration explained above, we can build more complex rules like the object in the `$config` variable of `configs/spaces.scss`. This will produce design tokens like `m-[key]` (`m-0`, `p-2`, `mt-6`, `px-8`, ...) and this with responsiveness if needed.
 
 ```
-// config/spaces.scss
+// configs/spaces.scss
 
 $config: (
   get(0), // key 0

@@ -4,7 +4,7 @@ import { appendFile, createModules, installModule } from '../../installer.js';
 export function init(projectConfig) {
   const moduleName = 'grid-layout';
   const { destinationPath } = createModules(projectConfig);
-  const requiredDefaultFiles = ['/config/layout.scss', '/config/mq.scss'];
+  const requiredDefaultFiles = ['/configs/layout.scss', '/configs/mq.scss'];
   
   // install module
   const moduleInstalled = installModule(moduleName, projectConfig, { requiredDefaultFiles });
@@ -14,7 +14,7 @@ export function init(projectConfig) {
   if (moduleInstalled) {
     // Setup files to update
     const indexFile = '/_index.scss';
-    const configLayoutFile = '/config/layout.scss';
+    const configLayoutFile = '/configs/layout.scss';
     const destinationConfigLayoutPath = path.resolve(destinationPath, `.${configLayoutFile}`);
     const destinationIndexPath = path.resolve(destinationPath, `.${indexFile}`);
 
@@ -29,7 +29,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       '// grid-layout module',
-      '@use "./component/GridLayout.scss";',
+      '@use "./components/GridLayout.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }

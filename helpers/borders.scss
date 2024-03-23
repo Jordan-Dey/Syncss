@@ -2,9 +2,9 @@
 //             Borders
 // ---------------------------------
 
-@use "../config/borders.scss";
-@use "../config/colors.scss";
-@use "../config/mq.scss";
+@use "../configs/borders.scss";
+@use "../configs/colors.scss";
+@use "../configs/mq.scss";
 
 @mixin getStyles($size: borders.$default-size, $style: borders.$default-style, $color: borders.$default-color, $radius: borders.$default-radius) {
   border: $size $style $color;

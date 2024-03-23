@@ -5,12 +5,12 @@
 @use "./utilities/normalize.scss";
 @use "./utilities/base.scss";
 
-@use "./helper/accessibility.scss";
-@use "./helper/position.scss";
-@use "./helper/spaces.scss";
-@use "./helper/text.scss";
-@use "./helper/borders.scss";
-@use "./helper/layout.scss";
-@use "./helper/mq.scss";
+@use "./helpers/accessibility.scss";
+@use "./helpers/position.scss";
+@use "./helpers/spaces.scss";
+@use "./helpers/text.scss";
+@use "./helpers/borders.scss";
+@use "./helpers/layout.scss";
+@use "./helpers/mq.scss";
 
-@use "./component/Btn.scss";
+@use "./components/Btn.scss";

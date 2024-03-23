@@ -1,8 +1,8 @@
 // ---------------------------------
 //            Grid Layout
 // ---------------------------------
-@use "../config/layout.scss";
-@use "../config/mq.scss";
+@use "../configs/layout.scss";
+@use "../configs/mq.scss";
 
 .Grid-layout {
   // Config
@@ -25,7 +25,7 @@
     padding: layout.$desktop-paddingTop layout.$desktop-paddingX layout.$desktop-paddingBottom layout.$desktop-paddingX;
   }
 
-  &--y-space {
+  &--full {
     padding-top: 0;
     padding-bottom: 0;
   }

@@ -2,7 +2,7 @@
   * Media queries helper
   */
 
-@use "../config/mq.scss";
+@use "../configs/mq.scss";
 
 @include mq.media(">=tablet") {
   .mq-only-phone {

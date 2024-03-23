@@ -5,7 +5,7 @@ import { loadJsonFile, copyFile, copyFolder } from './installer.js';
 const sourcePath = path.resolve('.');
 const projectPath = path.resolve(sourcePath, '../..');
 const projectConfig = loadJsonFile(path.resolve(projectPath, './syncss.json'));
-const sourceFolders = ['component', 'config', 'helper', 'utilities'];
+const sourceFolders = ['components', 'configs', 'helpers', 'utilities'];
 const stylesFolderPath = projectConfig?.installPath || "/src/styles";
 const destinationPath = path.resolve(projectPath, `.${stylesFolderPath}`);
 
