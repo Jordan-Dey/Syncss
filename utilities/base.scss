@@ -1,6 +1,7 @@
 // -----------------------------------------------------------------------------
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
+@use "../config/borders.scss";
 @use "../configs/colors.scss";
 @use "../configs/fonts.scss";
 @use "../configs/text.scss";
@@ -97,6 +98,13 @@ ol {
   padding-left: 0;
 }
 
+// separator
+hr {
+  background: colors.$transparent;
+  border-top: borders.$default-type borders.$default-color;
+}
+
+// link
 a {
   color: inherit;
 
