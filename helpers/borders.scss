@@ -7,8 +7,8 @@
 @use "../configs/mq.scss";
 
 @mixin getStyles($size: borders.$default-size, $style: borders.$default-style, $color: borders.$default-color, $radius: borders.$default-radius) {
-  border: $size $style $color;
-  border-radius: $radius;
+  border: ($size or borders.$default-size) ($style or borders.$default-style) ($color or borders.$default-color);
+  border-radius: ($radius or borders.$default-radius);
 }
 
 @mixin responsiveBorder($config) {
@@ -29,7 +29,7 @@
       $mq-radius-value:  map-get($mq-values, "radius") or $radius-value;
 
       // If media query is for mobile, load they config at first level
-      @if ($mq-name == "mobile") {
+      @if ($mq-name == nth(mq.$name-available, 1)) {
         $size-value:  $mq-size-value;
         $style-value:  $mq-style-value;
         $color-value:  $mq-color-value;

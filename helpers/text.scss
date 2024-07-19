@@ -37,7 +37,7 @@
       );
       @include setProperties($property);
     } @else {
-      @if $mqKey == "mobile" {
+      @if $mqKey == nth(mq.$name-available, 1) {
         @include setProperties($properties);
       } @else {
         @include mq.media(map.get(mq.$name-map, $mqKey)...) {
@@ -49,45 +49,86 @@
 }
 
 @mixin headingStyles($level) {
-  $levelConfig: text.getHeadingConfig($level);
-  @include computeStyle($levelConfig);
+  $level-config: text.getHeadingConfig($level);
+  @include computeStyle($level-config);
 }
 
-h1,
-.text-heading1 {
-  @extend .text-heading;
-  @extend .my-5;
-  @include headingStyles(1);
+@if length(text.$heading-config) >= 1 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 1);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h1,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-5;
+    @include computeStyle($level-config);
+  }
 }
 
-h2,
-.text-heading2 {
-  @extend .text-heading;
-  @extend .my-4;
-  @include headingStyles(2);
+@if length(text.$heading-config) >= 2 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 2);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h2,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-4;
+    @include computeStyle($level-config);
+  }
 }
 
-h3,
-.text-heading3 {
-  @extend .text-heading;
-  @extend .my-3;
-  @include headingStyles(3);
+@if length(text.$heading-config) >= 3 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 3);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h3,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-3;
+    @include computeStyle($level-config);
+  }
 }
 
-h4,
-.text-heading4 {
-  @extend .text-heading;
-  @extend .my-3;
-  @include headingStyles(4);
+@if length(text.$heading-config) >= 4 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 4);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h4,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-3;
+    @include computeStyle($level-config);
+  }
 }
 
-h5,
-h6,
-.text-heading5,
-.text-heading6 {
-  @extend .text-heading;
-  @extend .my-2;
-  @include headingStyles(5);
+@if length(text.$heading-config) >= 5 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 5);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h5,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-2;
+    @include computeStyle($level-config);
+  }
+}
+
+@if length(text.$heading-config) >= 6 {
+  $keys: map-keys(text.$heading-config);
+  $key: nth($keys, 6);
+  $level-config: map-get(text.$heading-config, $key);
+
+  h6,
+  .text-#{$key} {
+    @extend .text-heading;
+    @extend .my-2;
+    @include computeStyle($level-config);
+  }
 }
 
 // Body
@@ -97,18 +138,22 @@ h6,
   @include computeStyle($text-config);
 }
 
-small,
-.text-small {
-  @include bodyStyles("small");
+@each $name, $config in text.$text-config {
+  .text-#{$name} {
+    @include computeStyle($config);
+  }
 }
 
-body,
-.text-regular {
-  @include bodyStyles("regular");
+@if map-has-key(text.$text-config, "small") {
+  small {
+    @extend .text-small;
+  }
 }
 
-.text-large {
-  @include bodyStyles("large");
+@if map-has-key(text.$text-config, "regular") {
+  body {
+    @extend .text-regular;
+  }
 }
 
 // ------------------------

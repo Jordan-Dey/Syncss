@@ -1,0 +1,18 @@
+@use '../configs/gridTemplate.scss';
+
+.gridTemplate {
+  display: grid;
+}
+
+@each $templateName, $templateConfig in gridTemplate.$templateConfig {
+  .gridTemplate-#{$templateName} {
+    @extend .gridTemplate;
+    @include gridTemplate.responsiveTemplate($templateConfig);
+  }
+}
+
+@each $itemName, $itemConfig in gridTemplate.$itemsConfig {
+  .gridTemplate-item-#{$itemName} {
+    @include gridTemplate.responsiveItem($itemConfig);
+  }
+}

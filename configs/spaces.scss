@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "sass:map";
 
 $space-value: 5px;
 $regulated-multiplicators: 0, 1, 2, 3, 4, 6, 10, 20, 40;
@@ -13,32 +14,68 @@ $regulated-spacing: ();
   @return nth($regulated-spacing, $key + 1);
 }
 
+@function getConfig($key) {
+  @return map.get($config, $key);
+}
+
+// $config: (
+//   get(0),
+//   get(1),
+//   get(2),
+//   (
+//     "mobile": get(2),
+//     "tablet": get(3),
+//   ),
+//   (
+//     "mobile": get(3),
+//     "tablet": get(4),
+//   ),
+//   (
+//     "mobile": get(4),
+//     "tablet": get(5),
+//   ),
+//   (
+//     "mobile": get(5),
+//     "tablet": get(6),
+//   ),
+//   (
+//     "mobile": get(5),
+//     "tablet": get(6),
+//     "desktop": get(7),
+//   ),
+//   (
+//     "mobile": get(6),
+//     "tablet": get(7),
+//     "desktop": get(8),
+//   )
+// );
+
 $config: (
-  get(0),
-  get(1),
-  get(2),
-  (
+  "0": get(0),
+  "1": get(1),
+  "2": get(2),
+  "3": (
     "mobile": get(2),
     "tablet": get(3),
   ),
-  (
+  "4": (
     "mobile": get(3),
     "tablet": get(4),
   ),
-  (
+  "5": (
     "mobile": get(4),
     "tablet": get(5),
   ),
-  (
+  "6": (
     "mobile": get(5),
     "tablet": get(6),
   ),
-  (
+  "7": (
     "mobile": get(5),
     "tablet": get(6),
     "desktop": get(7),
   ),
-  (
+  "8": (
     "mobile": get(6),
     "tablet": get(7),
     "desktop": get(8),

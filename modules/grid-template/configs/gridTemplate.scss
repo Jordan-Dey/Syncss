@@ -1,0 +1,108 @@
+@use "./spaces.scss";
+@use "./mq.scss";
+
+@use "../utilities/function.scss";
+
+$defaultCol: 12;
+$defaultGap: spaces.get(4);
+
+$templateConfig: (
+  "main": (
+    "col": $defaultCol,
+    "gap": $defaultGap / 2,
+    "tablet": (
+      "gap": $defaultGap,
+    ),
+  ),
+);
+
+$itemsConfig: (
+  "1": (
+    "col": 10,
+    "mobile": (
+      "col": 1
+    )
+  ),
+  "12-tab3": (
+    "col": 12,
+    "tablet": (
+      "col": 3,
+    ),
+  ),
+  "12-tab6-desk3": (
+    "col": 12,
+    "tablet": (
+      "col": 6,
+    ),
+    "desktop": (
+      "col": 3,
+    ),
+  ),
+);
+
+@mixin getTemplateStyles($col, $gap) {
+  grid-template-columns: repeat($col, minmax(0, 1fr));
+
+  &:not([class*="gap-"]) {
+    gap: $gap;
+  }
+}
+
+@mixin responsiveTemplate($config) {
+  $sanitized-config: function.sanitizeConfig($config);
+
+  // load first level config or take default configuration
+  $col-value: map-get($sanitized-config, "col") or $defaultCol;
+  $gap-value: map-get($sanitized-config, "gap") or $defaultGap;
+
+  // Build first level styles
+  @include getTemplateStyles($col: $col-value, $gap: $gap-value);
+
+  // check if configuration contains media query
+  @each $mq-name, $mq-query in mq.$name-map {
+    @if map-get($sanitized-config, $mq-name) {
+      // If yes, load media query configuration
+      $mq-values: map-get($sanitized-config, $mq-name);
+      $mq-col-value: map-get($mq-values, "col") or $col-value;
+      $mq-gap-value: map-get($mq-values, "gap") or $gap-value;
+
+      // Create media querry with custom properties
+      @include mq.media($mq-query) {
+        @include getTemplateStyles($col: $mq-col-value, $gap: $mq-gap-value);
+      }
+    }
+  }
+}
+
+@mixin getItemStyles($col) {
+  grid-column: span $col / span $col;
+}
+
+@mixin responsiveItem($config) {
+  $sanitized-config: function.sanitizeConfig($config);
+
+  // load first level config or take default configuration
+  $col-value: map-get($sanitized-config, "col") or $defaultCol;
+
+  // Build first level styles
+  @include getItemStyles($col: $col-value);
+
+  // check if configuration contains media query
+  @each $mq-name, $mq-query in mq.$name-map {
+    @if map-get($sanitized-config, $mq-name) {
+      // If yes, load media query configuration
+      $mq-values: map-get($sanitized-config, $mq-name);
+      $mq-col-value: map-get($mq-values, "col") or $col-value;
+
+      // If media query is for mobile, load they config at first level
+      @if ($mq-name == nth(mq.$name-available, 1)) {
+        $col-value: $mq-size-value;
+      } @else {
+        // Create media querry with custom properties
+        @include mq.media($mq-query) {
+          @include getItemStyles($col: $mq-col-value);
+        }
+      }
+    }
+  }
+}

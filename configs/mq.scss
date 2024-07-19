@@ -10,6 +10,7 @@ $breakpoints-list: (
 
 // This map is used by other modules.
 // They represent the name used in configs files and the good mq to use.
+// Important : The smaller breakpoint first.
 $name-map: (
   "mobile": "<tablet",
   "tablet": ">=tablet",

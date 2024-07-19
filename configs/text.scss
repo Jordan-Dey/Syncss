@@ -44,16 +44,14 @@ $text-config: (
 $heading-base-size: 1.2rem;
 
 $heading-config: (
-  (
-    // level 1
+  "heading-1": (
     "line-height": 1,
     "font-size": $heading-base-size * 3,
     "tablet": (
       "font-size": $heading-base-size * 4,
     )
   ),
-  (
-    // level 2
+  "heading-2": (
     "line-height": 1,
     "font-size": $heading-base-size * 2,
     "tablet": (
@@ -63,16 +61,14 @@ $heading-config: (
       "font-size": $heading-base-size * 3,
     )
   ),
-  (
-    // level 3
+  "heading-3": (
     "line-height": 1,
     "font-size": $heading-base-size * 2,
     "tablet": (
       "font-size": $heading-base-size * 2.5,
     )
   ),
-  (
-    // level 4
+  "heading-4": (
     "line-height": 1.1,
     "font-size": $heading-base-size * 1.6,
     "tablet": (
@@ -82,8 +78,14 @@ $heading-config: (
       "font-size": $heading-base-size * 2,
     )
   ),
-  (
-    // level 5
+  "heading-5": (
+    "line-height": 1.1,
+    "font-size": $heading-base-size * 1.6,
+    "tablet": (
+      "font-size": $heading-base-size * 1.8,
+    )
+  ),
+  "heading-6": (
     "line-height": 1.1,
     "font-size": $heading-base-size * 1.6,
     "tablet": (

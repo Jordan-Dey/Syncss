@@ -1,0 +1,25 @@
+@use '../configs/mq.scss';
+
+@function sanitizeConfig($config) {
+  @if map-get($config, nth(mq.$name-available, 1)) {
+    $smaller-mq-config : map-get($config, nth(mq.$name-available, 1));
+    @return map-remove(map-merge($config, $smaller-mq-config), nth(mq.$name-available, 1));
+  }
+  
+  @return $config;
+}
+
+@function sanitizeConfigs($configs) {
+  $merged-configs: ();
+
+  @each $key, $config in $configs {
+    $merged-configs: map-merge(
+      $merged-configs,
+      (
+        $key: sanitizeConfig($config)
+      )
+    );
+  }
+
+  @return $merged-configs;
+}

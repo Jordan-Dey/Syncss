@@ -16,7 +16,7 @@
 @mixin responsiveSpacing($properties, $mq-values) {
   @if type-of($mq-values) == "map" {
     @each $mq-key, $space-value in $mq-values {
-      @if $mq-key == "mobile" {
+      @if $mq-key == nth(mq.$name-available, 1) {
         @include setProperties($properties, $space-value);
       } @else {
         @include mq.media(map.get(mq.$name-map, $mq-key)...) {
@@ -29,9 +29,7 @@
   }
 }
 
-@for $i from 1 through length(spaces.$config) {
-  $space-identifier: $i - 1;
-  $config-value: nth(spaces.$config, $i);
+@each $space-identifier, $config-value in spaces.$config {
 
   // Margin
   .m-#{$space-identifier} {
@@ -89,5 +87,27 @@
 
   .py-#{$space-identifier} {
     @include responsiveSpacing(("padding-top", "padding-bottom"), $config-value);
+  }
+
+  // Gap
+  .gap-#{$space-identifier} {
+    @include responsiveSpacing('gap', $config-value);
+  }
+
+  // Position
+  .top-#{$space-identifier} {
+    @include responsiveSpacing('top', $config-value);
+  }
+
+  .bottom-#{$space-identifier} {
+    @include responsiveSpacing('bottom', $config-value);
+  }
+
+  .left-#{$space-identifier} {
+    @include responsiveSpacing('left', $config-value);
+  }
+  
+  .right-#{$space-identifier} {
+    @include responsiveSpacing('right', $config-value);
   }
 }
