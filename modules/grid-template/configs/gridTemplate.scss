@@ -1,44 +1,15 @@
+// ---------------------------------
+//           Grid Template
+// ---------------------------------
+
 @use "./spaces.scss";
 @use "./mq.scss";
 
 @use "../utilities/function.scss";
 
-$defaultCol: 12;
-$defaultGap: spaces.get(4);
-
-$templateConfig: (
-  "main": (
-    "col": $defaultCol,
-    "gap": $defaultGap / 2,
-    "tablet": (
-      "gap": $defaultGap,
-    ),
-  ),
-);
-
-$itemsConfig: (
-  "1": (
-    "col": 10,
-    "mobile": (
-      "col": 1
-    )
-  ),
-  "12-tab3": (
-    "col": 12,
-    "tablet": (
-      "col": 3,
-    ),
-  ),
-  "12-tab6-desk3": (
-    "col": 12,
-    "tablet": (
-      "col": 6,
-    ),
-    "desktop": (
-      "col": 3,
-    ),
-  ),
-);
+// ---------------------------------
+// Mixin & function
+// ---------------------------------
 
 @mixin getTemplateStyles($col, $gap) {
   grid-template-columns: repeat($col, minmax(0, 1fr));
@@ -106,3 +77,44 @@ $itemsConfig: (
     }
   }
 }
+
+// ---------------------------------
+// Configuration
+// ---------------------------------
+
+$defaultCol: 12;
+$defaultGap: spaces.get(4);
+
+$templateConfig: (
+  "main": (
+    "col": $defaultCol,
+    "gap": $defaultGap / 2,
+    "tablet": (
+      "gap": $defaultGap,
+    ),
+  ),
+);
+
+$itemsConfig: (
+  "1": (
+    "col": 10,
+    "mobile": (
+      "col": 1
+    )
+  ),
+  "12-tab3": (
+    "col": 12,
+    "tablet": (
+      "col": 3,
+    ),
+  ),
+  "12-tab6-desk3": (
+    "col": 12,
+    "tablet": (
+      "col": 6,
+    ),
+    "desktop": (
+      "col": 3,
+    ),
+  ),
+);

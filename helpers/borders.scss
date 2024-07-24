@@ -4,55 +4,10 @@
 
 @use "../configs/borders.scss";
 @use "../configs/colors.scss";
-@use "../configs/mq.scss";
 
-@mixin getStyles($size: borders.$default-size, $style: borders.$default-style, $color: borders.$default-color, $radius: borders.$default-radius) {
-  border: ($size or borders.$default-size) ($style or borders.$default-style) ($color or borders.$default-color);
-  border-radius: ($radius or borders.$default-radius);
-}
-
-@mixin responsiveBorder($config) {
-  // load first level config or take default border configuration
-  $size-value:  map-get($config, "size") or borders.$default-size;
-  $style-value:  map-get($config, "style") or borders.$default-style;
-  $color-value:  map-get($config, "color") or borders.$default-color;
-  $radius-value:  map-get($config, "radius") or borders.$default-radius;
-  
-  // check if configuration contains media query
-  @each $mq-name, $mq-query in mq.$name-map {
-    @if map-get($config, $mq-name) {
-      // If yes, load media query configuration
-      $mq-values: map-get($config, $mq-name);
-      $mq-size-value:  map-get($mq-values, "size") or $size-value;
-      $mq-style-value:  map-get($mq-values, "style") or $style-value;
-      $mq-color-value:  map-get($mq-values, "color") or $color-value;
-      $mq-radius-value:  map-get($mq-values, "radius") or $radius-value;
-
-      // If media query is for mobile, load they config at first level
-      @if ($mq-name == nth(mq.$name-available, 1)) {
-        $size-value:  $mq-size-value;
-        $style-value:  $mq-style-value;
-        $color-value:  $mq-color-value;
-        $radius-value:  $mq-radius-value;
-      }  @else {
-        // Create media querry with custom properties
-        @include mq.media($mq-query) {
-          @include getStyles($size: $mq-size-value, $style: $mq-style-value, $color: $mq-color-value, $radius: $mq-radius-value);
-        }
-      }       
-    }
-  }
-
-  // Build first level styles
-  @include getStyles($size: $size-value, $style: $style-value, $color: $color-value, $radius: $radius-value);
-}
-
-@for $i from 1 through length(borders.$config) {
-  $config-key: nth(map-keys(borders.$config), $i);
-  $config-value: map-get(borders.$config, $config-key);
-
-  .border-#{$config-key} {
-    @include responsiveBorder($config-value);
+@each $key, $config in borders.$config {
+  .border-#{$key} {
+    @include borders.responsiveBorder($config);
   }
 }
 

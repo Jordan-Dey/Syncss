@@ -3,8 +3,8 @@
 // ---------------------------------
 
 @use "../configs/colors";
+@use "../configs/borders";
 
-@use "../helpers/borders";
 @use "../helpers/text";
 
 .Chip {

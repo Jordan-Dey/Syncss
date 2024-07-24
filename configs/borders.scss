@@ -1,4 +1,58 @@
+// ---------------------------------
+//              Borders
+// ---------------------------------
+
+@use "./mq.scss";
 @use "./colors.scss";
+
+// ---------------------------------
+// Mixin & function
+// ---------------------------------
+
+@mixin getStyles($size: $default-size, $style: $default-style, $color: $default-color, $radius: $default-radius) {
+  border: ($size or $default-size) ($style or $default-style) ($color or $default-color);
+  border-radius: ($radius or $default-radius);
+}
+
+@mixin responsiveBorder($config) {
+  // load first level config or take default border configuration
+  $size-value:  map-get($config, "size") or $default-size;
+  $style-value:  map-get($config, "style") or $default-style;
+  $color-value:  map-get($config, "color") or $default-color;
+  $radius-value:  map-get($config, "radius") or $default-radius;
+  
+  @each $mq-name, $mq-query in mq.$name-map {
+    // check if configuration contains media query
+    @if map-get($config, $mq-name) {
+      // If yes, load media query configuration
+      $mq-values: map-get($config, $mq-name);
+      $mq-size-value:  map-get($mq-values, "size") or $size-value;
+      $mq-style-value:  map-get($mq-values, "style") or $style-value;
+      $mq-color-value:  map-get($mq-values, "color") or $color-value;
+      $mq-radius-value:  map-get($mq-values, "radius") or $radius-value;
+
+      // If media query is for mobile, load they config at first level
+      @if ($mq-name == nth(mq.$name-available, 1)) {
+        $size-value:  $mq-size-value;
+        $style-value:  $mq-style-value;
+        $color-value:  $mq-color-value;
+        $radius-value:  $mq-radius-value;
+      }  @else {
+        // Create media querry with custom properties
+        @include mq.media($mq-query) {
+          @include getStyles($size: $mq-size-value, $style: $mq-style-value, $color: $mq-color-value, $radius: $mq-radius-value);
+        }
+      }       
+    }
+  }
+
+  // Build first level styles
+  @include getStyles($size: $size-value, $style: $style-value, $color: $color-value, $radius: $radius-value);
+}
+
+// ---------------------------------
+// Configuration
+// ---------------------------------
 
 $default-style: solid;
 

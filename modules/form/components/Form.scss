@@ -2,13 +2,15 @@
 //                 Form
 // ------------------------------------
 
+@use "../utilities/function.scss";
+
 @use "../configs/colors.scss";
 @use "../configs/fonts.scss";
 @use "../configs/form.scss";
 @use "../configs/animation.scss";
+@use "../configs/borders.scss";
 
 @use "../helpers/accessibility.scss";
-@use "../helpers/borders.scss";
 @use "../helpers/spaces.scss";
 @use "../helpers/text.scss";
 
@@ -183,9 +185,8 @@
     }
 
     &:checked + label::before {
-      content: "•";
-      font-size: calc(form.$radio-size - form.$input-border-size * 2);
-      color: form.$radio-mark-color;
+      $radio-mark-end-size: unquote((function.strip-unit(form.$radio-mark-size) + 1) + unit(form.$radio-mark-size));
+      background: radial-gradient(form.$radio-mark-color form.$radio-mark-size, form.$input-accent-color $radio-mark-end-size);
     }
 
     &[disabled] + label::before {

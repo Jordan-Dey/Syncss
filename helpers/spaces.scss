@@ -1,113 +1,90 @@
-// ------------------------
-//         Spaces
-// ------------------------
+// ---------------------------------
+//              Spaces
+// ---------------------------------
 
 @use "sass:map";
 
-@use "../configs/mq.scss";
 @use "../configs/spaces.scss";
-
-@mixin setProperties($properties, $value) {
-  @each $property in $properties {
-    #{$property}: $value;
-  }
-}
-
-@mixin responsiveSpacing($properties, $mq-values) {
-  @if type-of($mq-values) == "map" {
-    @each $mq-key, $space-value in $mq-values {
-      @if $mq-key == nth(mq.$name-available, 1) {
-        @include setProperties($properties, $space-value);
-      } @else {
-        @include mq.media(map.get(mq.$name-map, $mq-key)...) {
-          @include setProperties($properties, $space-value);
-        }
-      }
-    }
-  } @else {
-    @include setProperties($properties, $mq-values);
-  }
-}
 
 @each $space-identifier, $config-value in spaces.$config {
 
   // Margin
   .m-#{$space-identifier} {
-    @include responsiveSpacing("margin", $config-value);
+    @include spaces.responsiveSpacing("margin", $config-value);
   }
 
   .mt-#{$space-identifier} {
-    @include responsiveSpacing("margin-top", $config-value);
+    @include spaces.responsiveSpacing("margin-top", $config-value);
   }
 
   .mb-#{$space-identifier} {
-    @include responsiveSpacing("margin-bottom", $config-value);
+    @include spaces.responsiveSpacing("margin-bottom", $config-value);
   }
 
   .ml-#{$space-identifier} {
-    @include responsiveSpacing("margin-left", $config-value);
+    @include spaces.responsiveSpacing("margin-left", $config-value);
   }
 
   .mr-#{$space-identifier} {
-    @include responsiveSpacing("margin-right", $config-value);
+    @include spaces.responsiveSpacing("margin-right", $config-value);
   }
 
   .mx-#{$space-identifier} {
-    @include responsiveSpacing(("margin-left", "margin-right"), $config-value);
+    @include spaces.responsiveSpacing(("margin-left", "margin-right"), $config-value);
   }
 
   .my-#{$space-identifier} {
-    @include responsiveSpacing(("margin-top", "margin-bottom"), $config-value);
+    @include spaces.responsiveSpacing(("margin-top", "margin-bottom"), $config-value);
   }
 
   // Padding
   .p-#{$space-identifier} {
-    @include responsiveSpacing("padding", $config-value);
+    @include spaces.responsiveSpacing("padding", $config-value);
   }
 
   .pt-#{$space-identifier} {
-    @include responsiveSpacing("padding-top", $config-value);
+    @include spaces.responsiveSpacing("padding-top", $config-value);
   }
 
   .pb-#{$space-identifier} {
-    @include responsiveSpacing("padding-bottom", $config-value);
+    @include spaces.responsiveSpacing("padding-bottom", $config-value);
   }
 
   .pl-#{$space-identifier} {
-    @include responsiveSpacing("padding-left", $config-value);
+    @include spaces.responsiveSpacing("padding-left", $config-value);
   }
 
   .pr-#{$space-identifier} {
-    @include responsiveSpacing("padding-right", $config-value);
+    @include spaces.responsiveSpacing("padding-right", $config-value);
   }
 
   .px-#{$space-identifier} {
-    @include responsiveSpacing(("padding-left", "padding-right"), $config-value);
+    @include spaces.responsiveSpacing(("padding-left", "padding-right"), $config-value);
   }
 
   .py-#{$space-identifier} {
-    @include responsiveSpacing(("padding-top", "padding-bottom"), $config-value);
+    @include spaces.responsiveSpacing(("padding-top", "padding-bottom"), $config-value);
   }
 
   // Gap
   .gap-#{$space-identifier} {
-    @include responsiveSpacing('gap', $config-value);
+    @include spaces.responsiveSpacing('gap', $config-value);
   }
 
   // Position
   .top-#{$space-identifier} {
-    @include responsiveSpacing('top', $config-value);
+    @include spaces.responsiveSpacing('top', $config-value);
   }
 
   .bottom-#{$space-identifier} {
-    @include responsiveSpacing('bottom', $config-value);
+    @include spaces.responsiveSpacing('bottom', $config-value);
   }
 
   .left-#{$space-identifier} {
-    @include responsiveSpacing('left', $config-value);
+    @include spaces.responsiveSpacing('left', $config-value);
   }
   
   .right-#{$space-identifier} {
-    @include responsiveSpacing('right', $config-value);
+    @include spaces.responsiveSpacing('right', $config-value);
   }
 }

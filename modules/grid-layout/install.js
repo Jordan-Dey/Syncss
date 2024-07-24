@@ -29,7 +29,7 @@ export function init(projectConfig) {
     // Import files into _index.scss
     const newsImportPart = [
       '// grid-layout module',
-      '@use "./components/GridLayout.scss";',
+      '@use "./components/gridLayout.scss";',
     ].join("\n");
     appendFile(destinationIndexPath, newsImportPart);
   }

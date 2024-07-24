@@ -1,5 +1,5 @@
 // ------------------------------------
-//         Form
+//                Form
 // ------------------------------------
 
 @use "./colors.scss";
@@ -42,6 +42,7 @@ $checkbox-space-after: spaces.get(3);
 // Radio (default use checkbox config)
 // ------------------------------------
 $radio-mark-color: $checkbox-mark-color;
+$radio-mark-size: 30%;
 $radio-disabled-color: $checkbox-disabled-color;
 $radio-active-disabled-color: $checkbox-active-disabled-color;
 $radio-size: $checkbox-size;

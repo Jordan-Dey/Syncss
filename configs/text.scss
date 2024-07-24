@@ -1,5 +1,59 @@
+// ---------------------------------
+//              Text
+// ---------------------------------
+
 @use "sass:map";
+
 @use "./colors.scss";
+@use "./mq.scss";
+
+// ---------------------------------
+// Mixin & function
+// ---------------------------------
+
+@function getTextConfig($key) {
+  @return map.get($text-config, $key);
+}
+
+@function getHeadingConfig($level) {
+  @return nth($heading-config, $level);
+}
+
+@mixin setProperties($properties) {
+  @each $property, $value in $properties {
+    #{$property}: $value;
+  }
+}
+
+@mixin computeStyle($styleConfig) {
+  @each $mqKey, $properties in $styleConfig {
+    @if index(mq.$name-available, $mqKey) == null {
+      // in this case $mqKey is a top level property
+      $property: (
+        $mqKey: $properties,
+      );
+      @include setProperties($property);
+    } @else {
+      @if $mqKey == nth(mq.$name-available, 1) {
+        @include setProperties($properties);
+      } @else {
+        @include mq.media(map.get(mq.$name-map, $mqKey)...) {
+          @include setProperties($properties);
+        }
+      }
+    }
+  }
+}
+
+@mixin headingStyles($level) {
+  $level-config: text.getHeadingConfig($level);
+  @include computeStyle($level-config);
+}
+
+
+// ---------------------------------
+// Configuration
+// ---------------------------------
 
 // body text
 
@@ -34,10 +88,6 @@ $text-config: (
     ),
   ),
 );
-
-@function getTextConfig($key) {
-  @return map.get($text-config, $key);
-}
 
 // headings
 
@@ -93,7 +143,3 @@ $heading-config: (
     )
   )
 );
-
-@function getHeadingConfig($level) {
-  @return nth($heading-config, $level);
-}

@@ -1,56 +1,24 @@
-// ------------------------
-//         Text
-// ------------------------
+// ---------------------------------
+//               Text
+// ---------------------------------
 
 @use "sass:map";
 
-@use "../configs/mq.scss";
 @use "../configs/colors.scss";
 @use "../configs/fonts.scss";
 @use "../configs/text.scss";
 
 @use "../helpers/spaces.scss";
 
-// ------------------------
+// ---------------------------------
 // Typography
-// ------------------------
+// ---------------------------------
 
 // Heading
 
 .text-heading {
   font-family: fonts.$title;
   font-weight: 700;
-}
-
-@mixin setProperties($properties) {
-  @each $property, $value in $properties {
-    #{$property}: $value;
-  }
-}
-
-@mixin computeStyle($styleConfig) {
-  @each $mqKey, $properties in $styleConfig {
-    @if index(mq.$name-available, $mqKey) == null {
-      // in this case $mqKey is a top level property
-      $property: (
-        $mqKey: $properties,
-      );
-      @include setProperties($property);
-    } @else {
-      @if $mqKey == nth(mq.$name-available, 1) {
-        @include setProperties($properties);
-      } @else {
-        @include mq.media(map.get(mq.$name-map, $mqKey)...) {
-          @include setProperties($properties);
-        }
-      }
-    }
-  }
-}
-
-@mixin headingStyles($level) {
-  $level-config: text.getHeadingConfig($level);
-  @include computeStyle($level-config);
 }
 
 @if length(text.$heading-config) >= 1 {
@@ -62,7 +30,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-5;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -75,7 +43,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-4;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -88,7 +56,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-3;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -101,7 +69,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-3;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -114,7 +82,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-2;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -127,7 +95,7 @@
   .text-#{$key} {
     @extend .text-heading;
     @extend .my-2;
-    @include computeStyle($level-config);
+    @include text.computeStyle($level-config);
   }
 }
 
@@ -135,12 +103,12 @@
 
 @mixin bodyStyles($key) {
   $text-config: text.getTextConfig($key);
-  @include computeStyle($text-config);
+  @include text.computeStyle($text-config);
 }
 
 @each $name, $config in text.$text-config {
   .text-#{$name} {
-    @include computeStyle($config);
+    @include text.computeStyle($config);
   }
 }
 
@@ -156,9 +124,9 @@
   }
 }
 
-// ------------------------
+// ---------------------------------
 // Tools
-// ------------------------
+// ---------------------------------
 
 // family
 

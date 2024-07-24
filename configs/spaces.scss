@@ -1,5 +1,41 @@
+// ---------------------------------
+//              Spaces
+// ---------------------------------
+
 @use "sass:list";
 @use "sass:map";
+
+@use "./mq.scss";
+
+// ---------------------------------
+// Mixin & function
+// ---------------------------------
+
+@mixin setProperties($properties, $value) {
+  @each $property in $properties {
+    #{$property}: $value;
+  }
+}
+
+@mixin responsiveSpacing($properties, $mq-values) {
+  @if type-of($mq-values) == "map" {
+    @each $mq-key, $space-value in $mq-values {
+      @if $mq-key == nth(mq.$name-available, 1) {
+        @include setProperties($properties, $space-value);
+      } @else {
+        @include mq.media(map.get(mq.$name-map, $mq-key)...) {
+          @include setProperties($properties, $space-value);
+        }
+      }
+    }
+  } @else {
+    @include setProperties($properties, $mq-values);
+  }
+}
+
+// ---------------------------------
+// Configuration
+// ---------------------------------
 
 $space-value: 5px;
 $regulated-multiplicators: 0, 1, 2, 3, 4, 6, 10, 20, 40;
@@ -14,41 +50,9 @@ $regulated-spacing: ();
   @return nth($regulated-spacing, $key + 1);
 }
 
-@function getConfig($key) {
+@function get-config($key) {
   @return map.get($config, $key);
 }
-
-// $config: (
-//   get(0),
-//   get(1),
-//   get(2),
-//   (
-//     "mobile": get(2),
-//     "tablet": get(3),
-//   ),
-//   (
-//     "mobile": get(3),
-//     "tablet": get(4),
-//   ),
-//   (
-//     "mobile": get(4),
-//     "tablet": get(5),
-//   ),
-//   (
-//     "mobile": get(5),
-//     "tablet": get(6),
-//   ),
-//   (
-//     "mobile": get(5),
-//     "tablet": get(6),
-//     "desktop": get(7),
-//   ),
-//   (
-//     "mobile": get(6),
-//     "tablet": get(7),
-//     "desktop": get(8),
-//   )
-// );
 
 $config: (
   "0": get(0),
