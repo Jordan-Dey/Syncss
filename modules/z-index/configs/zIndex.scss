@@ -2,12 +2,9 @@
 //              Z-index
 // ---------------------------------
 
-// Ordered by z-index importance. (Top level is the most important)
-$config: (
-  // "zIndex1",
-  // "zIndex2",
-  // "zIndex3",
-);
+// ---------------------------------
+// Mixin & function
+// ---------------------------------
 
 // Z-index
 // Returns z-index layer level
@@ -23,3 +20,14 @@ $config: (
     @return auto;
   }
 }
+
+// ---------------------------------
+// Configuration
+// ---------------------------------
+
+// Ordered by z-index importance. (Top level is the most important)
+$config: (
+  // "zIndex1",
+  // "zIndex2",
+  // "zIndex3",
+);

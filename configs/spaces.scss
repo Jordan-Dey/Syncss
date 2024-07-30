@@ -33,6 +33,14 @@
   }
 }
 
+@function get($key) {
+  @return nth($regulated-spacing, $key + 1);
+}
+
+@function get-config($key) {
+  @return map.get($config, $key);
+}
+
 // ---------------------------------
 // Configuration
 // ---------------------------------
@@ -44,14 +52,6 @@ $regulated-spacing: ();
 @each $multiplicator in $regulated-multiplicators {
   $final-value: $space-value * $multiplicator;
   $regulated-spacing: list.append($regulated-spacing, $final-value);
-}
-
-@function get($key) {
-  @return nth($regulated-spacing, $key + 1);
-}
-
-@function get-config($key) {
-  @return map.get($config, $key);
 }
 
 $config: (

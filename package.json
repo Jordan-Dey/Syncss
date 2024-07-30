@@ -1,6 +1,6 @@
 {
   "name": "syncss",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A lightweight SASS starter for swiftly crafting design systems, tailored to reflect your design rules.",
   "main": "index.js",
   "type": "module",
@@ -13,6 +13,7 @@
   },
   "keywords": [
     "syncss",
+    "front-end",
     "SASS",
     "SCSS",
     "CSS",
