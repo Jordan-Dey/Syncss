@@ -69,31 +69,31 @@ With the available spacing configuration explained above, we can build more comp
 // configs/spaces.scss
 
 $config: (
-  get(0), // key 0
-  get(1), // key 1
-  get(2), // key 2
-  ( // key 3
+  "0": get(0),
+  "1": get(1),
+  "2": get(2),
+  "3": (
     "mobile": get(2),
     "tablet": get(3),
   ),
-  ( // key 4
+  "4": (
     "mobile": get(3),
     "tablet": get(4),
   ),
-  ( // key 5
+  "5": (
     "mobile": get(4),
     "tablet": get(5),
   ),
-  ( // key 6
+  "6": (
     "mobile": get(5),
     "tablet": get(6),
   ),
-  ( // key 7
+  "7": (
     "mobile": get(5),
     "tablet": get(6),
     "desktop": get(7),
   ),
-  ( // key 8
+  "8": (
     "mobile": get(6),
     "tablet": get(7),
     "desktop": get(8),
@@ -102,6 +102,8 @@ $config: (
 ```
 
 So with this configuration, m-1 will create a 5px margin, and pt-8 will create a responsive padding-top (50px on mobile, 100px on tablet, and 200px on desktop).
+
+You can use another naming methodology (like 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl') to align with what your designers do.
 
 ## Component
 
